@@ -1,0 +1,97 @@
+name: Analyze, Build, Release APK and .deb
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  test:
+    name: 🛠 Analyze project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.0"
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+
+  build_apk:
+    needs: [test]
+    name: 🔧 Build & 📦 Release APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.0"
+          cache: true
+      - run: flutter clean
+      - run: flutter pub get
+      - name: 🔧 Build APK
+        env:
+          KEY_JKS: ${{ secrets.KEY_JKS }}
+          KEY_WATERBUS_PASSWORD: ${{ secrets.KEY_WATERBUS_PASSWORD }}
+          ALIAS_WATERBUS_PASSWORD: ${{ secrets.ALIAS_WATERBUS_PASSWORD }}
+        run: base64 -d <<< $KEY_JKS > ./android/app/waterbus.jks && flutter build apk --release -v
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1
+        with:
+          name: "Waterbus ${{ github.ref_name }}"
+          bodyFile: "CHANGELOG.md"
+          artifacts: "build/app/outputs/apk/release/*.apk"
+          token: ${{ secrets.TOKEN }}
+
+  build_deb:
+    needs: [test]
+    name: 🐧 Build & 📦 Release .deb
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.0"
+          cache: true
+      - run: flutter clean
+      - run: flutter pub get
+      - name: Install dependencies for .deb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake gcc g++ libgtk-3-dev dpkg-dev libsecret-1-dev libjsoncpp-dev
+      - name: 🔧 Build .deb
+        run: flutter build linux --release
+      - name: Create .deb package
+        run: |
+          mkdir -p build/linux/packaging
+          cp -r build/linux/x64/release/bundle/* build/linux/packaging/
+          cd build/linux/packaging
+          fpm -s dir -t deb -n waterbus -v ${{ github.ref_name }} .
+      - name: Add .deb to Release
+        uses: ncipollo/release-action@v1
+        with:
+          name: "Waterbus ${{ github.ref_name }}"
+          bodyFile: "CHANGELOG.md"
+          artifacts: "build/linux/packaging/*.deb"
+          token: ${{ secrets.TOKEN }}
