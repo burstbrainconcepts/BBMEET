@@ -14,7 +14,7 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
 
-  SetWindowText(GetHandle(), L"Waterbus");
+  SetWindowText(GetHandle(), L"BB meet");
 
   RECT frame = GetClientArea();
 
