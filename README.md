@@ -1,150 +1,80 @@
-> [!IMPORTANT]  
-> Waterbus is an open source video conferencing app built on latest WebRTC SDK. Currently, Waterbus is an early release that is subject to the following limitations: it may have limited support, changes may not be compatible with other pre-general availability versions, and availability may change without notice.
+# BB meet - Zoom-App
 
 <p align="center">
-  <img src="./assets/icons/launcher_icon.png" width="180px" height=auto alt="Computador"/>
+  <img src="./assets/icons/launcher_icon.png" width="180px" height=auto alt="BB meet Logo"/>
 </p>
-
-<div class="badges" align="center">
-<p><a href="https://codecov.io/gh/lambiengcode/waterbus"><img src="https://codecov.io/gh/lambiengcode/waterbus/branch/main/graph/badge.svg?token=7KEMH26LHZ" alt="codecov"></a><a href="https://www.codefactor.io/repository/github/waterbustech/waterbus"><img src="https://www.codefactor.io/repository/github/waterbustech/waterbus/badge" alt="CodeFactor"></a><img src="https://img.shields.io/github/actions/workflow/status/waterbustech/waterbus/ci.yml" alt="GitHub Workflow Status (with event)"><img src="https://img.shields.io/github/issues/waterbustech/waterbus" alt="GitHub issues"><a href="https://chromium.googlesource.com/external/webrtc/+/branch-heads/6099"><img src="https://img.shields.io/badge/libwebrtc-128.6613.01-yellow.svg" alt="libwebrtc"></a><img src="https://img.shields.io/cocoapods/v/KaiRTC" alt="Cocoapods Version"><a href="https://github.com/lambiengcode"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&amp;logo=github" alt="PRs Welcome"></a></p>
-</div>
-<div align="center">
-<a href="https://twitter.com/waterbustech"><img src="https://img.shields.io/twitter/follow/waterbus.tech?style=social" alt="Twitter Follow"></a><a href="https://discord.gg/mfrWVefU"><img alt="Discord" src="https://img.shields.io/discord/1220616225521143818"></a>
-</div>
-<p align="center">
-  <a href="https://docs.waterbus.tech">Website</a> &bull;
-  <a href="https://github.com/waterbustech/waterbus/wiki">Wiki</a> &bull;
-  <a href="https://github.com/waterbustech/waterbus/blob/main/LICENSE">License</a>
-</p>
-
-<img src="https://github.com/waterbustech/.github/raw/main/profile/images/waterbus-app.gif?raw=true" width="100%"/>
 
 ## 🌤️ About
 
-🤙 The Open Source Video Conferencing App that utilizes Flutter and WebRTC technologies to provide users with a platform to conduct virtual meetings, conferences, and webinars. The app is built to provide seamless audio and video communication, as well as screen sharing, chat functionality.
+**BB meet** is an open-source video conferencing app built with Flutter and WebRTC technologies, providing a seamless platform for virtual meetings, conferences, and webinars. 
 
-## ✨ Why is this so awesome?
+## ✨ Key Features
 
-* 🌀 **Flutter WASM Support**: Seamlessly integrate with `Flutter WebAssembly` for enhanced performance.
-* 🕵🏻 **Anonymous Access**: Join meetings without the need for registration or login.
-* 👥 **Multiple Participants**: `Waterbus` enables high-quality group video calls using `WebRTC SFU`.
-* 💻 **Screen Sharing**: Share your screen with the participants of your call.
-* 🎥 **Video Codec Support**: Supports a wide range of video codecs including `AV1`, `H.264`, `VP8`, and `VP9`.
-* 🌌 **Virtual Background**: Enhance your meetings with professional virtual backgrounds.
-* 🖼️ **Picture-in-Picture**: Increase productivity with picture-in-picture multitasking.
-* 🔒 **End-to-End Encryption**: Ensure secure meetings with end-to-end encryption.
-* 💬 **Encrypted Chat**: Communicate privately with encrypted messaging during video calls.
-* 💋 **Beauty Filter**: Using [GPUPixel](https://github.com/pixpark/gpupixel) to implement Beauty Filters
-
-## 🎯 Goal
-
-My project isn't intended to replace standard video conferencing platforms like `Google Meet`. Instead, it focuses on facilitating code sharing. I've noticed that features such as `Virtual Background` or `Picture in Picture` aren't widely implemented in existing solutions, and there's a lack of reference code for them. Many developers resort to third-party solutions for video calls but often miss out on these features. My goal is to provide a reference project that includes these functionalities, offering developers a starting point for integrating them into their own products.
-
-If you have suggestions or problems, please [open an issue](https://github.com/waterbustech/waterbus/issues) or contribute directly 🤓
-
-<h3 align="center">👉 The Virtual Background feature supports on Android, iOS and MacOS</h3>
-<br/>
-<div align="center">
-<p><a href="https://youtube.com/shorts/Ms4avix05uY"><img src="https://ytcards.demolab.com/?id=Ms4avix05uY&amp;title=Virtual%20Background%20on%20iOS%20%28VisionKit%20for%20Person%20segment%29&amp;lang=en&amp;timestamp=1709774408&amp;background_color=%230d1117&amp;title_color=%23ffffff&amp;stats_color=%23dedede&amp;max_title_lines=2&amp;width=250&amp;border_radius=10&amp;duration=21" alt="Virtual Background on iOS (VisionKit for Person segment)" title="Virtual Background on iOS (VisionKit for Person segment)"></a>
-<a href="https://youtube.com/shorts/PDIDbVoHT5o"><img src="https://ytcards.demolab.com/?id=PDIDbVoHT5o&amp;title=Virtual%20Background%20on%20Android%20%28Mediapipe%20for%20Image%20segment%29&amp;lang=en&amp;timestamp=1709774408&amp;background_color=%230d1117&amp;title_color=%23ffffff&amp;stats_color=%23dedede&amp;max_title_lines=2&amp;width=250&amp;border_radius=10&amp;duration=27" alt="Virtual Background on Android (Mediapipe for Image segment)" title="Virtual Background on Android (Mediapipe for Image segment)"></a>
-<a href="https://youtu.be/VIIxOZJlmj4"><img src="https://ytcards.demolab.com/?id=VIIxOZJlmj4&amp;title=Virtual%20Background%20on%20MacOS%20%28VisionKit%20for%20Person%20segment%29&amp;lang=en&amp;timestamp=1711089181&amp;background_color=%230d1117&amp;title_color=%23ffffff&amp;stats_color=%23dedede&amp;max_title_lines=2&amp;width=250&amp;border_radius=10&amp;duration=58" alt="Virtual Background on MacOS (VisionKit for Person segment)" title="Virtual Background on MacOS (VisionKit for Person segment)"></a></p>
-</div>
-
-## ⚡ Current supported features
-
-| Feature            | Subscribe/Publish | Screen Sharing | Picture in Picture | Virtual Background | Beauty Filters | End to End Encryption |
-| ------------------ | ----------------- | -------------- | ------------------ | ------------------ | -------------- | --------------------- |
-| Android            |         🟢         |        🟢      |          🟢         |          🟢         |       🟢        |           🟢          | 
-| iOS                |         🟢         |        🟢      |          🟢         |          🟢         |       🟢       |           🟢          |        
-| Web                |         🟢         |        🟢      |          🟢         |          🟢         |       🟡       |           🟢          |
-| MacOS              |         🟢         |        🟢      |          🔴         |          🟢         |       🟢       |           🟢          |
-| Linux                |         🟢         |        🟢      |          🔴         |          🟡         |       🟢       |           🟢          |    
-| Windows                |         🟢         |        🟢      |          🔴         |          🟡         |       🟢       |           🟢          | 
-
-🟢 = Available
-
-🟡 = Coming soon (Work in progress)
-
-🔴 = Not currently available (Possibly in the future)
-
-> [!NOTE]  
-> - `AV1` supported on iOS 14 and above, Android 14 and above.
-> - `E2EE` only supported `H264`, `VP8` and `VP9`
-> - `Video codec Android supported`: Check at [Google Site](https://developer.android.com/guide/topics/media/platform/supported-formats#video-codecs)
+* 🌀 **High Performance**: Built with Flutter for smooth cross-platform performance.
+* 🕵🏻 **Anonymous Access**: Join meetings instantly without mandatory registration.
+* 👥 **Group Calls**: High-quality group video calls using WebRTC SFU.
+* 💻 **Screen Sharing**: Easily share your screen with participants.
+* 🔒 **Secure**: End-to-End Encryption for private communications.
+* 💬 **Chat**: Encrypted messaging during video calls.
+* 🎥 **Advanced Codecs**: Supports AV1, H.264, VP8, and VP9.
 
 ## 🚀 Getting Started
 
-To compile `Waterbus` from the source code, follow these steps:
+To run **BB meet** locally:
 
-1. Install [Flutter](https://flutter.dev).
-2. Install Rust via [rustup](https://rustup.rs/).
-3. Clone the Waterbus repository.
-4. Run `flutter pub get` to download dependencies.
-5. Run `flutter run` to start the app.
+1.  **Install Flutter**: [https://flutter.dev](https://flutter.dev)
+2.  **Install Rust**: [https://rustup.rs/](https://rustup.rs/)
+3.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Ephraimraxy/Zoom-App.git
+    cd Zoom-App
+    ```
+4.  **Install Dependencies**:
+    ```bash
+    flutter pub get
+    ```
+5.  **Run the App**:
+    ```bash
+    flutter run
+    ```
 
 ## 🛠️ Building
 
-### Android
+To build the executable for your platform:
 
+### Windows
+```bash
+flutter build windows
+```
+
+### Android
 ```bash
 flutter build apk
 ```
 
 ### iOS
-
-Pod install
-
-```bash
-cd ios
-bash clean-pods.sh
-```
-
 ```bash
 flutter build ipa
 ```
 
 ### macOS
-
-Pod install
-
-```bash
-cd macos
-bash clean-pods.sh
-```
-
 ```bash
 flutter build macos
 ```
 
 ### Linux
-
-- Build
-
 ```bash
 flutter build linux
 ```
 
 ### Web
-
 ```bash
 flutter build web --wasm --release
 ```
 
-## 🙏 Contributors
-
-<a href = "https://github.com/waterbustech/waterbus/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo=waterbustech/waterbus"/>
-</a>
-
-## 💙 Supports
-
-Support it by joining [stargazers](https://github.com/waterbustech/waterbus/stargazers) for this repository. ⭐
-
-Also, follow [maintainers](https://github.com/lambiengcode) on GitHub for our next creations!
-
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue if you encounter any problems or have suggestions for improvements.
+Contributions are welcome! Please feel free to submit a pull request or open an issue.
 
-#   Z o o m - A p p  
- 
+---
+*Based on the open-source Waterbus project.*
