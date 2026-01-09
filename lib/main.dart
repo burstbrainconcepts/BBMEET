@@ -47,8 +47,14 @@ void main(List<String> args) async {
       ];
 
       final authPlugin = AmplifyAuthCognito();
-      final analyticsPlugin = AmplifyAnalyticsPinpoint();
-      await Amplify.addPlugins([authPlugin, analyticsPlugin]);
+      final List<AmplifyPluginInterface> plugins = [authPlugin];
+
+      if (dotenv.env['PINPOINT_APP_ID'] != null &&
+          dotenv.env['PINPOINT_APP_ID']!.isNotEmpty) {
+        plugins.add(AmplifyAnalyticsPinpoint());
+      }
+
+      await Amplify.addPlugins(plugins);
 
       try {
         await Amplify.configure(amplifyConfig);
