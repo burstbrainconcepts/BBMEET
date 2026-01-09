@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/constants/constants.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/archived/presentation/screens/archived_screen.dart';
-import 'package:waterbus/features/chats/presentation/screens/chats_screen.dart';
-import 'package:waterbus/features/home/widgets/recent_meetings.dart';
-import 'package:waterbus/features/settings/presentation/screens/call_settings_screen.dart';
-import 'package:waterbus/features/settings/presentation/screens/language_screen.dart';
-import 'package:waterbus/features/settings/presentation/screens/notification_settings_screen.dart';
-import 'package:waterbus/features/settings/presentation/screens/theme_screen.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/constants/constants.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/archived/presentation/screens/archived_screen.dart';
+import 'package:bb_meet/features/chats/presentation/screens/chats_screen.dart';
+import 'package:bb_meet/features/home/widgets/recent_meetings.dart';
+import 'package:bb_meet/features/settings/presentation/screens/call_settings_screen.dart';
+import 'package:bb_meet/features/settings/presentation/screens/language_screen.dart';
+import 'package:bb_meet/features/settings/presentation/screens/notification_settings_screen.dart';
+import 'package:bb_meet/features/settings/presentation/screens/theme_screen.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 enum HomePageEnum {
   recentMeeting(Strings.recent),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/core/constants/storage_keys.dart';
-import 'package:waterbus/core/types/enums/color_seed.dart';
+import 'package:bb_meet/core/constants/storage_keys.dart';
+import 'package:bb_meet/core/types/enums/color_seed.dart';
 
 abstract class ThemesDatasource {
   void setTheme({required String themeMode});

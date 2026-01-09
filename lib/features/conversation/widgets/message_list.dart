@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/conversation/widgets/message_card.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/conversation/widgets/message_card.dart';
 
 class MessageList extends StatelessWidget {
   final List<Message> messages;

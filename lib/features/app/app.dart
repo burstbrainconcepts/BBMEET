@@ -6,13 +6,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 import 'package:toastification/toastification.dart';
 
-import 'package:waterbus/core/app/themes/app_theme.dart';
-import 'package:waterbus/core/constants/constants.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/common/widgets/size_not_supported.dart';
-import 'package:waterbus/features/settings/themes/bloc/themes_bloc.dart';
+import 'package:bb_meet/core/app/themes/app_theme.dart';
+import 'package:bb_meet/core/constants/constants.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/common/widgets/size_not_supported.dart';
+import 'package:bb_meet/features/settings/themes/bloc/themes_bloc.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

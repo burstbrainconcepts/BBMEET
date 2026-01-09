@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/core/constants/channel_name.dart';
+import 'package:bb_meet/core/constants/channel_name.dart';
 
 @singleton
 class PipChannel {

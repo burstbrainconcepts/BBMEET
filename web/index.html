@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+
+<head>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -27,22 +30,25 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 
   <!-- Web Meta -->
-  <meta name="google-signin-client_id" content="727554668212-292n8fha44s1tmj0s3d0fqv0qv75bm9r.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="727554668212-292n8fha44s1tmj0s3d0fqv0qv75bm9r.apps.googleusercontent.com">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="icons/favicon.png">
 
   <link rel="manifest" href="manifest.json">
-  <meta property="og:description" content="Open source video conferencing app built on latest WebRTC SDK Android/iOS/MacOS/Web">
+  <meta property="og:description"
+    content="Open source video conferencing app built on latest WebRTC SDK Android/iOS/MacOS/Web">
   <meta property="og:image" content="https://docs.waterbus.tech/img/banner-dark.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Waterbus Open Source">
-  <meta name="twitter:description" content="Open source video conferencing app built on latest WebRTC SDK Android/iOS/MacOS/Web">
+  <meta name="twitter:title" content="BB Meet">
+  <meta name="twitter:description"
+    content="Open source video conferencing app built on latest WebRTC SDK Android/iOS/MacOS/Web">
   <meta name="twitter:image" content="https://docs.waterbus.tech/img/banner-dark.png">
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
-  
-  
+
+
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <style id="splash-screen-style">
     html {
@@ -53,7 +59,7 @@
       margin: 0;
       min-height: 100%;
       background-color: #FFFFFF;
-          background-size: 100% 100%;
+      background-size: 100% 100%;
     }
 
     .center {
@@ -66,19 +72,22 @@
     }
 
     .contain {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
     .stretch {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
     .cover {
-      display:block;
-      width:100%; height:100%;
+      display: block;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -105,7 +114,7 @@
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #14171A;
-          }
+      }
     }
   </style>
   <script id="splash-screen-script">
@@ -119,36 +128,22 @@
 
 <body>
   <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+    <source
+      srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
+      media="(prefers-color-scheme: light)">
+    <source
+      srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
+      media="(prefers-color-scheme: dark)">
+    <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
   </picture>
-  
 
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyCg0POxwRZjYzVd4u571rkyObRdOHC3rvw",
-      authDomain: "waterbus-71cf5.firebaseapp.com",
-      projectId: "waterbus-71cf5",
-      storageBucket: "waterbus-71cf5.appspot.com",
-      messagingSenderId: "727554668212",
-      appId: "1:727554668212:web:6624269d0494b187b989e1",
-      measurementId: "G-3RWKDX1N14",
-    };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-  </script>
   <script src="flutter_bootstrap.js" async=""></script>
   <script src="main.js" async=""></script>
   <script type="module" src="virtual-background.js"></script>
 
 
-</body></html>
+</body>
+
+</html>

@@ -5,16 +5,16 @@ import 'package:flutter_side_menu/flutter_side_menu.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/constants/constants.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/home/widgets/side_footer_body.dart';
-import 'package:waterbus/features/profile/presentation/bloc/user_bloc.dart';
-import 'package:waterbus/features/profile/presentation/models/side_menu_item.dart';
-import 'package:waterbus/features/profile/presentation/widgets/avatar_card.dart';
-import 'package:waterbus/features/settings/themes/bloc/themes_bloc.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/constants/constants.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/home/widgets/side_footer_body.dart';
+import 'package:bb_meet/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:bb_meet/features/profile/presentation/models/side_menu_item.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/avatar_card.dart';
+import 'package:bb_meet/features/settings/themes/bloc/themes_bloc.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 class SideMenuWidget extends StatefulWidget {
   final Function(String) onTabChanged;

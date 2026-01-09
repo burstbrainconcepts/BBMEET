@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/profile/presentation/widgets/avatar_card.dart';
-import 'package:waterbus/features/room/domain/entities/status_enum_x.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/avatar_card.dart';
+import 'package:bb_meet/features/room/domain/entities/status_enum_x.dart';
 
 class MemberCard extends StatelessWidget {
   final Member member;

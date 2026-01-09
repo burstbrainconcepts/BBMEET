@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/constants/constants.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/profile/presentation/bloc/user_bloc.dart';
-import 'package:waterbus/features/profile/presentation/widgets/avatar_card.dart';
-import 'package:waterbus/features/settings/themes/bloc/themes_bloc.dart';
+import 'package:bb_meet/core/constants/constants.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/avatar_card.dart';
+import 'package:bb_meet/features/settings/themes/bloc/themes_bloc.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});

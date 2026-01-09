@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/chats/presentation/widgets/avatar_chat.dart';
-import 'package:waterbus/features/common/widgets/app_bar_title_back.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/common/widgets/images/waterbus_image_picker.dart';
-import 'package:waterbus/features/profile/presentation/widgets/profile_text_field.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/chats/presentation/widgets/avatar_chat.dart';
+import 'package:bb_meet/features/common/widgets/app_bar_title_back.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/common/widgets/images/waterbus_image_picker.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/profile_text_field.dart';
 
 class EditConversationScreen extends StatefulWidget {
   const EditConversationScreen({super.key});

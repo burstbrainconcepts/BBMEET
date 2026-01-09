@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/src/sizer_extension.dart';
+import 'package:bb_meet/core/utils/sizer/src/sizer_extension.dart';
 
 extension BuildContextX on BuildContext {
   SizerExtension get sizer {

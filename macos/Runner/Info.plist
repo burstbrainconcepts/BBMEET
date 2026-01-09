@@ -24,7 +24,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.waterbus.wanted</string>
+			<string>com.bb.meet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb989363838888620</string>

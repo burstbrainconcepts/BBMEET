@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/chats/presentation/widgets/glass_morphism_wrapper.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/chats/presentation/widgets/glass_morphism_wrapper.dart';
 
 showSnackBarWaterbus({
   String? content,

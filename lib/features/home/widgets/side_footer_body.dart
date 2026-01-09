@@ -4,10 +4,10 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:popover/popover.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/home/widgets/footer_popover_body.dart';
-import 'package:waterbus/features/profile/presentation/widgets/avatar_card.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/home/widgets/footer_popover_body.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/avatar_card.dart';
 
 class SideFooterBody extends StatelessWidget {
   final AvatarCard userAvatar;

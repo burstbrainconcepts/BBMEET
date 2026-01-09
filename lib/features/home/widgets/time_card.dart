@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class TimeCard extends StatelessWidget {
   final String text;

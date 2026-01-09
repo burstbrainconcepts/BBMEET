@@ -8,8 +8,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class PaginatedListView extends StatefulWidget {
   final int itemCount;

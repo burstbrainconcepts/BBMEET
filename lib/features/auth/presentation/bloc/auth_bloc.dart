@@ -4,14 +4,14 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:injectable/injectable.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/data/datasources/user_local_datasource.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/common/widgets/dialogs/dialog_loading.dart';
-import 'package:waterbus/features/profile/presentation/bloc/user_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/data/datasources/user_local_datasource.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/common/widgets/dialogs/dialog_loading.dart';
+import 'package:bb_meet/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/utils/date_time_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/date_time_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class TimeDisplay extends StatefulWidget {
   const TimeDisplay({super.key});

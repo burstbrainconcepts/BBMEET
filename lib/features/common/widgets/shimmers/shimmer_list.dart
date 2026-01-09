@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:waterbus/core/constants/constants.dart';
+import 'package:bb_meet/core/constants/constants.dart';
 
 class ShimmerList extends StatelessWidget {
   final Widget child;

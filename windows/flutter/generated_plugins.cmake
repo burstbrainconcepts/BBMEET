@@ -3,12 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  amplify_db_common
   audioplayers_windows
   connectivity_plus
   file_saver
   file_selector_windows
-  firebase_auth
-  firebase_core
+  flutter_secure_storage_windows
   flutter_webrtc_plus
   irondash_engine_context
   permission_handler_windows

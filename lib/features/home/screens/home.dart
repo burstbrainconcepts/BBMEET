@@ -6,17 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:waterbus/features/auth/presentation/screens/login_screen.dart';
-import 'package:waterbus/features/chats/presentation/screens/chats_screen.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/home/bloc/home/home_bloc.dart';
-import 'package:waterbus/features/home/screens/home_screen.dart';
-import 'package:waterbus/features/settings/presentation/screens/settings_screen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bb_meet/features/auth/presentation/screens/login_screen.dart';
+import 'package:bb_meet/features/chats/presentation/screens/chats_screen.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/home/bloc/home/home_bloc.dart';
+import 'package:bb_meet/features/home/screens/home_screen.dart';
+import 'package:bb_meet/features/settings/presentation/screens/settings_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

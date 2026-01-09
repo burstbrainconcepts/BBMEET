@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/home/widgets/side_menu_widget.dart';
-import 'package:waterbus/features/home/xmodels/home_page_enum.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/home/widgets/side_menu_widget.dart';
+import 'package:bb_meet/features/home/xmodels/home_page_enum.dart';
 
 class HomeDesktopScreen extends StatefulWidget {
   final Widget Function(BuildContext, String) header;

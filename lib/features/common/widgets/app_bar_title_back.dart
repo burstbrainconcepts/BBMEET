@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/common/widgets/tooltip_message.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/common/widgets/tooltip_message.dart';
 
 AppBar appBarTitleBack(
   BuildContext context, {

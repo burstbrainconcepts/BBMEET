@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/features/profile/presentation/models/menu_items.dart';
-import 'package:waterbus/features/profile/presentation/widgets/menu_drawer_card.dart';
+import 'package:bb_meet/features/profile/presentation/models/menu_items.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/menu_drawer_card.dart';
 
 class ListMenuDrawer extends StatelessWidget {
   final Function(MenuItemModel) onTapItem;

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/common/widgets/tooltip_message.dart';
-import 'package:waterbus/features/room/presentation/widgets/call_action_button.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/common/widgets/tooltip_message.dart';
+import 'package:bb_meet/features/room/presentation/widgets/call_action_button.dart';
 
 class MediaCallActionButton extends StatelessWidget {
   final IconData icon;

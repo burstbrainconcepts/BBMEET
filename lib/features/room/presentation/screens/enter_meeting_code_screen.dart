@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/common/widgets/app_bar_title_back.dart';
-import 'package:waterbus/features/common/widgets/dialogs/dialog_loading.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/home/widgets/enter_code_box.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/common/widgets/app_bar_title_back.dart';
+import 'package:bb_meet/features/common/widgets/dialogs/dialog_loading.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/home/widgets/enter_code_box.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
 
 class EnterMeetingCode extends StatefulWidget {
   const EnterMeetingCode({super.key});

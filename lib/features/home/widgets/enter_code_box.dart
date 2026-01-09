@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/input_formatter/room_code_formatter.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/input_formatter/room_code_formatter.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class EnterCodeBox extends StatefulWidget {
   final Function()? onTap;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class LabelWidget extends StatelessWidget {
   final String label;

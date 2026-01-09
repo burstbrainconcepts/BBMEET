@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/common/widgets/app_bar_title_back.dart';
-import 'package:waterbus/features/common/widgets/dialogs/dialog_loading.dart';
-import 'package:waterbus/features/common/widgets/textfield/text_field_input.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
-import 'package:waterbus/features/room/presentation/widgets/label_text.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/common/widgets/app_bar_title_back.dart';
+import 'package:bb_meet/features/common/widgets/dialogs/dialog_loading.dart';
+import 'package:bb_meet/features/common/widgets/textfield/text_field_input.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/features/room/presentation/widgets/label_text.dart';
 
 class MeetingFormScreen extends StatefulWidget {
   final bool isChatScreen;

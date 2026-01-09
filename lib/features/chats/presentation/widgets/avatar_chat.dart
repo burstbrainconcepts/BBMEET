@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/widgets/cached_network_image/cached_network_image.dart';
-import 'package:waterbus/features/conversation/xmodels/default_avatar_model.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/widgets/cached_network_image/cached_network_image.dart';
+import 'package:bb_meet/features/conversation/xmodels/default_avatar_model.dart';
 
 class AvatarChat extends StatelessWidget {
   final Room room;

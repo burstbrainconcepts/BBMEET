@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class SettingSwitchCard extends StatefulWidget {
   final String label;
@@ -75,7 +75,7 @@ class _SettingSwitchCardState extends State<SettingSwitchCard> {
                 )
               : Switch(
                   value: _isEnabled,
-                  activeColor: Theme.of(context).colorScheme.primary,
+                  activeThumbColor: Theme.of(context).colorScheme.primary,
                   thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
                     (states) {
                       if (states.contains(WidgetState.selected)) {

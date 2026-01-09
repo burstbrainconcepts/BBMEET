@@ -4,10 +4,10 @@ import 'package:flutter/widgets.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/room/presentation/widgets/e2ee_label_line.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/room/presentation/widgets/e2ee_label_line.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 class E2eeBottomSheet extends StatelessWidget {
   const E2eeBottomSheet({super.key});

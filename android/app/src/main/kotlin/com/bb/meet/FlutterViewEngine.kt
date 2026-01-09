@@ -1,4 +1,4 @@
-package com.example.waterbus
+package com.bb.meet
 
 import android.app.Activity
 import android.content.Intent

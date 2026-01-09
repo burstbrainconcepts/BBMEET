@@ -1,6 +1,6 @@
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
 
 extension MemberStatusEnumX on MemberStatusEnum {
   String get title => switch (this) {

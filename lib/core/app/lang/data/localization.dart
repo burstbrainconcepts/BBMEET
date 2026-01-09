@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:i18n_extension/i18n_extension.dart';
 
-import 'package:waterbus/core/app/lang/data/english.dart';
-import 'package:waterbus/core/app/lang/data/vietnamese.dart';
+import 'package:bb_meet/core/app/lang/data/english.dart';
+import 'package:bb_meet/core/app/lang/data/vietnamese.dart';
 
 class Strings {
   static const String language = 'language';

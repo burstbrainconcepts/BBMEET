@@ -1,6 +1,6 @@
 import 'package:waterbus_sdk/types/error/failures.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
 
 extension ExceptionX on Failure? {
   String get messageException {

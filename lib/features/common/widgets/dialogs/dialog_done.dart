@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/device_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/device_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 Future showDialogDone({
   required String text,

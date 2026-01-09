@@ -5,14 +5,14 @@ import 'package:super_context_menu/super_context_menu.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/common/widgets/cached_network_image/cached_network_image.dart';
-import 'package:waterbus/features/conversation/bloc/message_bloc.dart';
-import 'package:waterbus/features/conversation/xmodels/default_avatar_model.dart';
-import 'package:waterbus/features/conversation/xmodels/message_model_x.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/common/widgets/cached_network_image/cached_network_image.dart';
+import 'package:bb_meet/features/conversation/bloc/message_bloc.dart';
+import 'package:bb_meet/features/conversation/xmodels/default_avatar_model.dart';
+import 'package:bb_meet/features/conversation/xmodels/message_model_x.dart';
 
 class MessageCard extends StatelessWidget {
   final Message message;

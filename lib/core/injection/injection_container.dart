@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/core/injection/injection_container.config.dart';
+import 'package:bb_meet/core/injection/injection_container.config.dart';
 
 final getIt = GetIt.instance;
 

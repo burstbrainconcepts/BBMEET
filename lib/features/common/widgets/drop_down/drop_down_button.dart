@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 Widget showDropdownButton<T>({
   required List<T> data,

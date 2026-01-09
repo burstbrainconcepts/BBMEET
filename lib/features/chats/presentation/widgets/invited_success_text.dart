@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class InvitedSuccessText extends StatelessWidget {
   final Room room;

@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/navigator/app_router.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
 
 enum FadeTheme { light, dark, lightReverse }
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/date_time_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/date_time_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class DateTitleCard extends StatelessWidget {
   final DateTime lastJoinedAt;

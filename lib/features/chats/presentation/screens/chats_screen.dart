@@ -7,21 +7,21 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/types/index.dart';
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/navigator/routes.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/modal/show_dialog.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/chats/presentation/screens/conversation_list.dart';
-import 'package:waterbus/features/common/widgets/app_bar_title_back.dart';
-import 'package:waterbus/features/common/widgets/tooltip_message.dart';
-import 'package:waterbus/features/conversation/screens/conversation_screen.dart';
-import 'package:waterbus/features/profile/presentation/bloc/user_bloc.dart';
-import 'package:waterbus/features/profile/presentation/widgets/avatar_card.dart';
-import 'package:waterbus/features/room/presentation/screens/meeting_form_screen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/navigator/routes.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/modal/show_dialog.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/chats/presentation/screens/conversation_list.dart';
+import 'package:bb_meet/features/common/widgets/app_bar_title_back.dart';
+import 'package:bb_meet/features/common/widgets/tooltip_message.dart';
+import 'package:bb_meet/features/conversation/screens/conversation_screen.dart';
+import 'package:bb_meet/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/avatar_card.dart';
+import 'package:bb_meet/features/room/presentation/screens/meeting_form_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});

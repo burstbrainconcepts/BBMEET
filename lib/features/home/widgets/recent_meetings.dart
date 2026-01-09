@@ -5,16 +5,16 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:super_context_menu/super_context_menu.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/date_time_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/home/widgets/date_titlle_card.dart';
-import 'package:waterbus/features/home/widgets/e2ee_title_footer.dart';
-import 'package:waterbus/features/home/widgets/empty_meet_view.dart';
-import 'package:waterbus/features/home/widgets/meeting_card.dart';
-import 'package:waterbus/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/date_time_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/home/widgets/date_titlle_card.dart';
+import 'package:bb_meet/features/home/widgets/e2ee_title_footer.dart';
+import 'package:bb_meet/features/home/widgets/empty_meet_view.dart';
+import 'package:bb_meet/features/home/widgets/meeting_card.dart';
+import 'package:bb_meet/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
 
 class RecentMeetings extends StatelessWidget {
   const RecentMeetings({super.key});

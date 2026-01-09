@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/core/types/enums/color_seed.dart';
-import 'package:waterbus/features/settings/themes/data/themes_datasource.dart';
+import 'package:bb_meet/core/types/enums/color_seed.dart';
+import 'package:bb_meet/features/settings/themes/data/themes_datasource.dart';
 
 part 'themes_event.dart';
 part 'themes_state.dart';

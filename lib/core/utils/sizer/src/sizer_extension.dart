@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class SizerExtension extends ThemeExtension<SizerExtension> {
   final BoxConstraints constraints;

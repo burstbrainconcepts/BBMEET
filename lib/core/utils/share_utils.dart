@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:share_plus/share_plus.dart';
 
-import 'package:waterbus/core/utils/device_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/device_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class ShareUtils {
   Future<void> share({

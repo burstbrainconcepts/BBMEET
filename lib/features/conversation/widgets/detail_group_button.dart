@@ -4,14 +4,14 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:popover/popover.dart';
 import 'package:superellipse_shape/superellipse_shape.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/common/styles/style.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/conversation/widgets/more_action_item.dart';
-import 'package:waterbus/features/room/domain/entities/room_model_x.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/common/styles/style.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/conversation/widgets/more_action_item.dart';
+import 'package:bb_meet/features/room/domain/entities/room_model_x.dart';
 
 class DetailGroupButton extends StatelessWidget {
   final IconData icon;

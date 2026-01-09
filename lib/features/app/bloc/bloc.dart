@@ -1,16 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:waterbus/core/injection/injection_container.dart';
-import 'package:waterbus/features/archived/presentation/bloc/archived_bloc.dart';
-import 'package:waterbus/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:waterbus/features/chats/presentation/bloc/chat_bloc.dart';
-import 'package:waterbus/features/conversation/bloc/message_bloc.dart';
-import 'package:waterbus/features/home/bloc/home/home_bloc.dart';
-import 'package:waterbus/features/profile/presentation/bloc/user_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/beauty_filters/beauty_filters_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
-import 'package:waterbus/features/settings/themes/bloc/themes_bloc.dart';
+import 'package:bb_meet/core/injection/injection_container.dart';
+import 'package:bb_meet/features/archived/presentation/bloc/archived_bloc.dart';
+import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bb_meet/features/chats/presentation/bloc/chat_bloc.dart';
+import 'package:bb_meet/features/conversation/bloc/message_bloc.dart';
+import 'package:bb_meet/features/home/bloc/home/home_bloc.dart';
+import 'package:bb_meet/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/beauty_filters/beauty_filters_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/recent_joined/recent_joined_bloc.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/features/settings/themes/bloc/themes_bloc.dart';
 
 class AppBloc {
   static final HomeBloc homeBloc = getIt<HomeBloc>();

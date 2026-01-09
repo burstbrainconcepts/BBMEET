@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/types/enums/color_seed.dart';
-import 'package:waterbus/core/utils/platform_utils.dart';
-import 'package:waterbus/gen/fonts.gen.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/types/enums/color_seed.dart';
+import 'package:bb_meet/core/utils/platform_utils.dart';
+import 'package:bb_meet/gen/fonts.gen.dart';
 
 class NoTransitionsBuilder extends PageTransitionsBuilder {
   const NoTransitionsBuilder();

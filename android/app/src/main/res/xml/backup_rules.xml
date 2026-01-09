@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <include domain="sharedpref" path="."/>
+    <!-- Exclude secure storage and databases -->
+    <exclude domain="sharedpref" path="FlutterSecureStorage"/>
+    <exclude domain="database" path="waterbus.hive"/>
+    <exclude domain="root" path="waterbus.hive"/>
+    <exclude domain="file" path="waterbus.hive"/>
+</full-backup-content>

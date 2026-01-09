@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/styles/style.dart';
-import 'package:waterbus/features/common/widgets/shimmers/fade_shimmer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/styles/style.dart';
+import 'package:bb_meet/features/common/widgets/shimmers/fade_shimmer.dart';
 
 class ShimmerInvitedChatCard extends StatelessWidget {
   const ShimmerInvitedChatCard({super.key});

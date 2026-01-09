@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/widgets/shimmers/fade_shimmer.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/widgets/shimmers/fade_shimmer.dart';
 
 class MessageShimmerCard extends StatelessWidget {
   final bool isMe;

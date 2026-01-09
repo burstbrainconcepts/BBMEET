@@ -1,13 +1,13 @@
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/utils/modal/show_bottom_sheet.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/chats/presentation/widgets/bottom_sheet_delete.dart';
-import 'package:waterbus/features/conversation/bloc/message_bloc.dart';
-import 'package:waterbus/features/conversation/xmodels/option_model.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/utils/modal/show_bottom_sheet.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/chats/presentation/widgets/bottom_sheet_delete.dart';
+import 'package:bb_meet/features/conversation/bloc/message_bloc.dart';
+import 'package:bb_meet/features/conversation/xmodels/option_model.dart';
 
 extension MessageX on Message {
   String get dataX => isDeleted

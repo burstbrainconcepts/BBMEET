@@ -28,7 +28,7 @@
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
 				<key>CFBundleURLName</key>
-				<string>com.waterbus.wanted</string>
+				<string>com.bb.meet</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
 					<string>fb989363838888620</string>
@@ -70,7 +70,7 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>BB meet needs access to your photos so you can include them in your profile.</string>
 		<key>RTCAppGroupIdentifier</key>
-		<string>group.waterbus.broadcastext</string>
+		<string>group.bb.meet.broadcastext</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UIBackgroundModes</key>

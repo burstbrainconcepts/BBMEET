@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/conversation/widgets/message_shimmer_card.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/conversation/widgets/message_shimmer_card.dart';
 
 class ListConversationShimmers extends StatelessWidget {
   const ListConversationShimmers({super.key});

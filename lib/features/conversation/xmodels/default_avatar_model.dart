@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/constants/avatar_colors.dart';
+import 'package:bb_meet/core/constants/avatar_colors.dart';
 
 class DefaultAvatarModel {
   final String keyword;

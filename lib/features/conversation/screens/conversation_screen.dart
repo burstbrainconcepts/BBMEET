@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/common/styles/style.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/conversation/bloc/message_bloc.dart';
-import 'package:waterbus/features/conversation/widgets/conversation_header.dart';
-import 'package:waterbus/features/conversation/widgets/list_conversation_shimmers.dart';
-import 'package:waterbus/features/conversation/widgets/message_input_container.dart';
-import 'package:waterbus/features/conversation/widgets/message_list.dart';
-import 'package:waterbus/features/conversation/widgets/message_suggest_widget.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/common/styles/style.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/conversation/bloc/message_bloc.dart';
+import 'package:bb_meet/features/conversation/widgets/conversation_header.dart';
+import 'package:bb_meet/features/conversation/widgets/list_conversation_shimmers.dart';
+import 'package:bb_meet/features/conversation/widgets/message_input_container.dart';
+import 'package:bb_meet/features/conversation/widgets/message_list.dart';
+import 'package:bb_meet/features/conversation/widgets/message_suggest_widget.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 class ConversationScreen extends StatefulWidget {
   final Room? room;

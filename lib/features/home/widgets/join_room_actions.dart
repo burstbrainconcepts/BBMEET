@@ -5,17 +5,17 @@ import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:toastification/toastification.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/common/widgets/textfield/text_field_input.dart';
-import 'package:waterbus/features/conversation/xmodels/string_extension.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/common/widgets/textfield/text_field_input.dart';
+import 'package:bb_meet/features/conversation/xmodels/string_extension.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
 
 class JoinRoomActions extends StatefulWidget {
   final Room? room;

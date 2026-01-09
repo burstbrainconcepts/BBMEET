@@ -1,4 +1,4 @@
-package com.waterbus.wanted
+package com.bb.meet
 
 import android.content.res.Configuration
 import androidx.annotation.NonNull

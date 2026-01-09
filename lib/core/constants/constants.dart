@@ -1,6 +1,6 @@
 import 'package:waterbus_sdk/types/index.dart';
 
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 const String kAppVersion = 'v2.0.0';
 const String kAppTitle = 'BB meet';

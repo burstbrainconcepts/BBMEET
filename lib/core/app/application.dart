@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/injection/injection_container.dart';
-import 'package:waterbus/core/utils/data_sources/base_local_data.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bb_meet/core/injection/injection_container.dart';
+import 'package:bb_meet/core/utils/data_sources/base_local_data.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
 
 class Application {
   /// [Production - Dev]

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/app/colors/app_color.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:waterbus/features/auth/presentation/widgets/button_login.dart';
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/core/app/colors/app_color.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:bb_meet/features/auth/presentation/widgets/button_login.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});

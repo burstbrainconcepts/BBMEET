@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/common/styles/style.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/common/styles/style.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
 
 class CustomRowButton extends StatelessWidget {
   final Function() onTap;
@@ -30,11 +30,14 @@ class CustomRowButton extends StatelessWidget {
             color: Colors.transparent,
             child: Row(
               children: [
-                Radio(
-                  activeColor: Theme.of(context).colorScheme.primary,
-                  value: value,
-                  groupValue: groupValue,
-                  onChanged: (value) => onTap.call(),
+                Icon(
+                  value == groupValue
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
+                  color: value == groupValue
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).textTheme.bodyMedium?.color,
+                  size: 20.sp,
                 ),
                 SizedBox(width: 8.sp),
                 Text(

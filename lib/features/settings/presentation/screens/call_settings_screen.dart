@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/device_utils.dart';
-import 'package:waterbus/core/utils/modal/show_dialog.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/common/styles/style.dart';
-import 'package:waterbus/features/common/widgets/app_bar_title_back.dart';
-import 'package:waterbus/features/common/widgets/dialogs/dialog_done.dart';
-import 'package:waterbus/features/common/widgets/gesture_wrapper.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
-import 'package:waterbus/features/settings/presentation/widgets/label_widget.dart';
-import 'package:waterbus/features/settings/presentation/widgets/setting_checkbox_card.dart';
-import 'package:waterbus/features/settings/presentation/widgets/setting_switch_card.dart';
-import 'package:waterbus/features/settings/presentation/widgets/video_quality_bottom_sheet.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/device_utils.dart';
+import 'package:bb_meet/core/utils/modal/show_dialog.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/common/styles/style.dart';
+import 'package:bb_meet/features/common/widgets/app_bar_title_back.dart';
+import 'package:bb_meet/features/common/widgets/dialogs/dialog_done.dart';
+import 'package:bb_meet/features/common/widgets/gesture_wrapper.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/features/settings/presentation/widgets/label_widget.dart';
+import 'package:bb_meet/features/settings/presentation/widgets/setting_checkbox_card.dart';
+import 'package:bb_meet/features/settings/presentation/widgets/setting_switch_card.dart';
+import 'package:bb_meet/features/settings/presentation/widgets/video_quality_bottom_sheet.dart';
 
 class CallSettingsScreen extends StatefulWidget {
   final bool isInRoom;

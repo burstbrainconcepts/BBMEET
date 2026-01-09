@@ -5,22 +5,22 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/navigator/app_router.dart';
-import 'package:waterbus/core/navigator/routes.dart';
-import 'package:waterbus/core/types/extensions/context_extensions.dart';
-import 'package:waterbus/core/utils/modal/show_bottom_sheet.dart';
-import 'package:waterbus/core/utils/modal/show_dialog.dart';
-import 'package:waterbus/core/utils/share_utils.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/room/domain/entities/room_model_x.dart';
-import 'package:waterbus/features/room/presentation/bloc/room/room_bloc.dart';
-import 'package:waterbus/features/room/presentation/widgets/beauty_filter_widget.dart';
-import 'package:waterbus/features/room/presentation/widgets/call_setting_button.dart';
-import 'package:waterbus/features/room/presentation/widgets/chat_in_room.dart';
-import 'package:waterbus/features/room/presentation/widgets/stats_view.dart';
-import 'package:waterbus/features/settings/presentation/screens/call_settings_screen.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
+import 'package:bb_meet/core/navigator/routes.dart';
+import 'package:bb_meet/core/types/extensions/context_extensions.dart';
+import 'package:bb_meet/core/utils/modal/show_bottom_sheet.dart';
+import 'package:bb_meet/core/utils/modal/show_dialog.dart';
+import 'package:bb_meet/core/utils/share_utils.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/room/domain/entities/room_model_x.dart';
+import 'package:bb_meet/features/room/presentation/bloc/room/room_bloc.dart';
+import 'package:bb_meet/features/room/presentation/widgets/beauty_filter_widget.dart';
+import 'package:bb_meet/features/room/presentation/widgets/call_setting_button.dart';
+import 'package:bb_meet/features/room/presentation/widgets/chat_in_room.dart';
+import 'package:bb_meet/features/room/presentation/widgets/stats_view.dart';
+import 'package:bb_meet/features/settings/presentation/screens/call_settings_screen.dart';
 
 class CallSettingsBottomSheet extends StatelessWidget {
   final Function onBeautyFiltersTapped;

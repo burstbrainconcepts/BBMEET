@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:waterbus/core/utils/image_resizer/index.dart';
+import 'package:bb_meet/core/utils/image_resizer/index.dart';
 
 class ImageUtils {
   Future<void> init() async {

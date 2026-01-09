@@ -3,10 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:toastification/toastification.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 
-import 'package:waterbus/core/types/extensions/failure_x.dart';
-import 'package:waterbus/features/app/bloc/bloc.dart';
-import 'package:waterbus/features/conversation/bloc/message_bloc.dart';
-import 'package:waterbus/features/conversation/xmodels/string_extension.dart';
+import 'package:bb_meet/core/types/extensions/failure_x.dart';
+import 'package:bb_meet/features/app/bloc/bloc.dart';
+import 'package:bb_meet/features/conversation/bloc/message_bloc.dart';
+import 'package:bb_meet/features/conversation/xmodels/string_extension.dart';
 
 part 'archived_event.dart';
 part 'archived_state.dart';

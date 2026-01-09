@@ -3,9 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  amplify_db_common
   audioplayers_linux
   file_saver
   file_selector_linux
+  flutter_secure_storage_linux
   flutter_webrtc_plus
   irondash_engine_context
   super_native_extensions

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/profile/presentation/models/menu_items.dart';
-import 'package:waterbus/features/profile/presentation/widgets/list_menu_drawer.dart';
-import 'package:waterbus/features/profile/presentation/widgets/profile_header.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/profile/presentation/models/menu_items.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/list_menu_drawer.dart';
+import 'package:bb_meet/features/profile/presentation/widgets/profile_header.dart';
 
 class ProfileDrawerLayout extends StatelessWidget {
   final Function(MenuItemModel) onTapItem;

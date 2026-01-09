@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:waterbus/core/app/lang/models/language_model.dart';
-import 'package:waterbus/features/settings/lang/datasource/lang_datasource.dart';
+import 'package:bb_meet/core/app/lang/models/language_model.dart';
+import 'package:bb_meet/features/settings/lang/datasource/lang_datasource.dart';
 
 class LanguageService {
   static List<Locale> supportLanguages = [

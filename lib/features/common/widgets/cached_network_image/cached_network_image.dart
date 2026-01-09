@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:waterbus/features/common/widgets/cached_network_image/default_image.dart';
-import 'package:waterbus/features/common/widgets/cached_network_image/place_holder.dart';
-import 'package:waterbus/features/conversation/xmodels/default_avatar_model.dart';
+import 'package:bb_meet/features/common/widgets/cached_network_image/default_image.dart';
+import 'package:bb_meet/features/common/widgets/cached_network_image/place_holder.dart';
+import 'package:bb_meet/features/conversation/xmodels/default_avatar_model.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String? urlToImage;

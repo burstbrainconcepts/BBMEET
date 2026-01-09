@@ -6,9 +6,9 @@ import 'package:superellipse_shape/superellipse_shape.dart';
 import 'package:waterbus_sdk/flutter_waterbus_sdk.dart';
 import 'package:waterbus_sdk/utils/extensions/duration_extension.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/utils/sizer/sizer.dart';
-import 'package:waterbus/features/room/presentation/widgets/thumbnail_widget.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/features/room/presentation/widgets/thumbnail_widget.dart';
 
 class ScreenSelectDialog extends StatefulWidget {
   const ScreenSelectDialog({super.key});

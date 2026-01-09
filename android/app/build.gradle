@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'dev.flutter.flutter-gradle-plugin'
-    id 'com.google.gms.google-services'
 }
 
 def localProperties = new Properties()
@@ -52,7 +51,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.waterbus.wanted"
+        applicationId "com.bb.meet"
 
         minSdkVersion 24
         targetSdkVersion 33
@@ -93,8 +92,8 @@ android {
             signingConfig signingConfigs.common
             debuggable false                // make app non-debuggable
             crunchPngs true                 // shrink images
-            minifyEnabled false             // obfuscate code and remove unused code
-            shrinkResources false        
+            minifyEnabled true              // obfuscate code and remove unused code
+            shrinkResources true        
             multiDexEnabled true
         }
     }
@@ -103,7 +102,7 @@ android {
         checkReleaseBuilds false
     }
 
-    namespace "com.waterbus.wanted"
+    namespace "com.bb.meet"
 }
 
 flutter {
@@ -112,9 +111,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation platform('com.google.firebase:firebase-bom:33.1.0')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-messaging-directboot:24.0.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0"
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'

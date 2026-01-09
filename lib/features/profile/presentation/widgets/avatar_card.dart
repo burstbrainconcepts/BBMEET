@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/constants/constants.dart';
-import 'package:waterbus/features/common/widgets/cached_network_image/cached_network_image.dart';
-import 'package:waterbus/features/conversation/xmodels/default_avatar_model.dart';
+import 'package:bb_meet/core/constants/constants.dart';
+import 'package:bb_meet/features/common/widgets/cached_network_image/cached_network_image.dart';
+import 'package:bb_meet/features/conversation/xmodels/default_avatar_model.dart';
 
 class AvatarCard extends StatelessWidget {
   final String? urlToImage;

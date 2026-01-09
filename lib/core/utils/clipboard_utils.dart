@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
-import 'package:waterbus/core/constants/endpoints.dart';
-import 'package:waterbus/core/utils/device_utils.dart';
-import 'package:waterbus/features/common/widgets/dialogs/dialog_done.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/constants/endpoints.dart';
+import 'package:bb_meet/core/utils/device_utils.dart';
+import 'package:bb_meet/features/common/widgets/dialogs/dialog_done.dart';
 
 /// A Flutter Clipboard Plugin.
 class ClipboardUtils {

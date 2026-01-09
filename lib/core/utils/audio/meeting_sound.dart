@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/gen/assets.gen.dart';
+import 'package:bb_meet/gen/assets.gen.dart';
 
 @singleton
 class RoomSound {

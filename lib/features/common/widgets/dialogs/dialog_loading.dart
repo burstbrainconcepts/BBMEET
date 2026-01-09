@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:waterbus/core/navigator/app_router.dart';
+import 'package:bb_meet/core/navigator/app_router.dart';
 
 void displayLoadingLayer() {
   showDialog(

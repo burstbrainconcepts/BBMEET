@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:waterbus/core/utils/sizer/sizer.dart';
+import 'package:bb_meet/core/utils/sizer/sizer.dart';
 
 class GroupSpaceBarCustom extends StatefulWidget {
   final Text title;
@@ -87,8 +87,11 @@ class _GroupSpaceBarCustomState extends State<GroupSpaceBarCustom> {
                     : 1.0 - Interval(fadeStart, fadeEnd).transform(v);
             final double scaleValueAvatar =
                 Tween<double>(begin: expandedTitleScale, end: 1.0).transform(v);
-            final Matrix4 scaleTransformAvatar = Matrix4.identity()
-              ..scale(scaleValueAvatar, scaleValueAvatar, 1.0);
+            final Matrix4 scaleTransformAvatar = Matrix4.diagonal3Values(
+              scaleValueAvatar,
+              scaleValueAvatar,
+              1.0,
+            );
 
             children.add(
               _FlexibleSpaceHeaderOpacity(
@@ -127,8 +130,8 @@ class _GroupSpaceBarCustomState extends State<GroupSpaceBarCustom> {
 
           final double scaleValue =
               Tween<double>(begin: expandedTitleScale, end: 1.0).transform(t);
-          final Matrix4 scaleTransform = Matrix4.identity()
-            ..scale(scaleValue, scaleValue, 1.0);
+          final Matrix4 scaleTransform =
+              Matrix4.diagonal3Values(scaleValue, scaleValue, 1.0);
 
           children.add(
             Container(
@@ -164,8 +167,11 @@ class _GroupSpaceBarCustomState extends State<GroupSpaceBarCustom> {
             final double scaleSubTitleValue =
                 Tween<double>(begin: expandedSubTitleScale, end: 1)
                     .transform(t);
-            final Matrix4 scaleTransform = Matrix4.identity()
-              ..scale(scaleSubTitleValue, scaleSubTitleValue, 1.0);
+            final Matrix4 scaleTransform = Matrix4.diagonal3Values(
+              scaleSubTitleValue,
+              scaleSubTitleValue,
+              1.0,
+            );
 
             children.add(
               Container(

@@ -1,7 +1,7 @@
 import 'package:hive_ce/hive.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:waterbus/core/constants/storage_keys.dart';
+import 'package:bb_meet/core/constants/storage_keys.dart';
 
 abstract class LanguagesDatasource {
   //Language

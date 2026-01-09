@@ -1,4 +1,4 @@
-import 'package:waterbus/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
 
 Map<String, String> english = {
   Strings.language: "Language",

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
 
 class MenuItemModel {
   final String title;

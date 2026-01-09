@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:waterbus/core/app/lang/data/localization.dart';
+import 'package:bb_meet/core/app/lang/data/localization.dart';
 
 enum Language {
   vietnam(Locale('vi', 'VN'), Strings.vietnamese, 'vi', 'Tiếng Việt'),
