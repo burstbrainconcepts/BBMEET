@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:auth/auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -97,25 +98,42 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) async {
     displayLoadingLayer();
 
-    final String payload = await _auth.signInAnonymously();
+    try {
+      debugPrint("AuthBloc: Starting signInAnonymously");
+      final String payload = await _auth.signInAnonymously();
+      debugPrint("AuthBloc: signInAnonymously success, payload: $payload");
 
-    if (payload.isEmpty) {
-      AppRouter.pop();
-      return;
-    }
+      if (payload.isEmpty) {
+        debugPrint("AuthBloc: Payload empty, popping router");
+        AppRouter.pop();
+        return;
+      }
 
-    final Result<User> result = await _waterbusSdk.createToken(
-      AuthPayload(fullName: fullname ?? "Waterbus", externalId: payload),
-      callbackConnected: callbackConnected,
-    );
+      debugPrint("AuthBloc: Calling createToken with fullname: $fullname");
+      final Result<User> result = await _waterbusSdk.createToken(
+        AuthPayload(fullName: fullname ?? "Waterbus", externalId: payload),
+        callbackConnected: callbackConnected,
+      );
+      debugPrint("AuthBloc: createToken result: ${result.isSuccess ? 'Success' : 'Failure'}");
 
-    if (fullname == null) {
-      AppRouter.pop();
-    }
+      if (fullname == null) {
+        debugPrint("AuthBloc: Popping router (fullname is null)");
+        AppRouter.pop();
+      }
 
-    if (result.isSuccess) {
-      _userLocal.saveUser(result.value!);
-      _user = result.value;
+      if (result.isSuccess) {
+        debugPrint("AuthBloc: Saving user and updating state");
+        _userLocal.saveUser(result.value!);
+        _user = result.value;
+      }
+    } catch (e, stack) {
+      // Ensure we dismiss the loading layer if error occurs
+      if (fullname == null) {
+        debugPrint("AuthBloc: Popping router due to error");
+        AppRouter.pop();
+      }
+      // Re-throw or handle error
+      debugPrint("AuthBloc login failed: $e\nStack: $stack");
     }
   }
 

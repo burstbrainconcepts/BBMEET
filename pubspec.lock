@@ -2309,10 +2309,9 @@ packages:
   waterbus_sdk:
     dependency: "direct main"
     description:
-      name: waterbus_sdk
-      sha256: "5c2efb0edea2c111303da4eaf9d4fd82f1b22029fac4bb67ed7bf49f8b5e9c6e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/waterbus_sdk"
+      relative: true
+    source: path
     version: "2.0.0"
   web:
     dependency: "direct main"

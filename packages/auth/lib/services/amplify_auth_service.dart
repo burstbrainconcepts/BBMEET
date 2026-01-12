@@ -15,10 +15,14 @@ class AmplifyAuthService extends AuthService {
     // Use Guest access or throw error if not supported.
     // For now, we'll try to fetch the current session or auth guest.
     try {
+      safePrint("AmplifyAuthService: fetchAuthSession start");
       final result = await Amplify.Auth.fetchAuthSession();
+      safePrint("AmplifyAuthService: fetchAuthSession done, isSignedIn: ${result.isSignedIn}");
       if (result.isSignedIn) {
         // Get the current user to retrieve userId
+        safePrint("AmplifyAuthService: getCurrentUser start");
         final user = await Amplify.Auth.getCurrentUser();
+        safePrint("AmplifyAuthService: getCurrentUser done, userId: ${user.userId}");
         return user.userId;
       } else {
         // If not signed in, we can't really "sign in anonymously" to a User Pool.
@@ -35,12 +39,22 @@ class AmplifyAuthService extends AuthService {
   @override
   Future<bool> signIn(String username, String password) async {
     try {
+      safePrint("AmplifyAuthService: signIn called for user: $username");
+      // Ensure clean state
+      await Amplify.Auth.signOut();
+      safePrint("AmplifyAuthService: signOut complete, calling signIn");
+
       final result = await Amplify.Auth.signIn(
         username: username,
         password: password,
       );
+      safePrint("AmplifyAuthService: signIn returned, isSignedIn: ${result.isSignedIn}");
+      if (!result.isSignedIn) {
+        safePrint("Sign In incomplete. Next step: ${result.nextStep.signInStep}");
+      }
       return result.isSignedIn;
     } catch (e) {
+      safePrint("AmplifyAuthService: signIn failed: $e");
       rethrow;
     }
   }
@@ -59,6 +73,22 @@ class AmplifyAuthService extends AuthService {
       );
       return result.isSignUpComplete;
     } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> confirmSignUp(String email, String code) async {
+    try {
+      final result = await Amplify.Auth.confirmSignUp(
+        username: email,
+        confirmationCode: code,
+      );
+      safePrint(
+          "confirmSignUp result: isSignUpComplete=${result.isSignUpComplete}, nextStep=${result.nextStep.signUpStep}");
+      return result.isSignUpComplete;
+    } catch (e) {
+      safePrint("confirmSignUp failed: $e");
       rethrow;
     }
   }

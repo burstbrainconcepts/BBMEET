@@ -116,7 +116,8 @@ dependencies:
   audioplayers: ^6.1.0
 
   # Video call - Waterbus SDK
-  waterbus_sdk: ^2.0.0
+  waterbus_sdk: 
+    path: ./packages/waterbus_sdk
 
 dependency_overrides:
   archive: ^4.0.7
@@ -158,6 +159,12 @@ dev_dependencies:
   # Lints
   flutter_lints: ^5.0.0
   import_sorter: ^4.6.0
+
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
+  integrations:
+    flutter_svg: true
 
 # MSIX config
 msix_config:

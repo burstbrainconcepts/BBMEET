@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bb_meet/core/app/colors/app_color.dart';
 import 'package:bb_meet/core/types/extensions/context_extensions.dart';
 import 'package:bb_meet/core/utils/sizer/sizer.dart';
-import 'package:bb_meet/features/app/bloc/bloc.dart';
-import 'package:bb_meet/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:bb_meet/features/auth/presentation/widgets/button_login.dart';
+import 'package:bb_meet/features/auth/presentation/widgets/email_password_form.dart';
 import 'package:bb_meet/gen/assets.gen.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -55,17 +53,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        ButtonLogin(
-                          title: 'Sign in Anonymously',
-                          iconAsset: Assets.icons.icIncognito.path,
-                          onPressed: () async {
-                            AppBloc.authBloc.add(AuthLoggedIn());
-                          },
-                        ),
-                      ],
-                    ),
+                    const EmailPasswordForm(),
                     SizedBox(height: 20.sp),
                     RichText(
                       text: TextSpan(

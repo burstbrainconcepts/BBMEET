@@ -10,5 +10,7 @@ class Auth {
       _authService.signIn(username, password);
   Future<bool> signUp(String email, String password, String name) =>
       _authService.signUp(email, password, name);
+  Future<bool> confirmSignUp(String email, String code) =>
+      _authService.confirmSignUp(email, code);
   Future<void> signOut() => _authService.signOut();
 }
