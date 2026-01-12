@@ -1,0 +1,75 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.0'
+          channel: 'stable'
+      
+      - name: Get Flutter dependencies
+        run: flutter pub get
+      
+      - name: Get SDK dependencies
+        run: flutter pub get
+        working-directory: packages/waterbus_sdk
+      
+      - name: Get auth dependencies
+        run: flutter pub get
+        working-directory: packages/auth
+      
+      - name: Run build_runner for SDK
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+        working-directory: packages/waterbus_sdk
+      
+      - name: Run build_runner for main app
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+      
+      - name: Build web app
+        run: flutter build web --release --verbose
+      
+      - name: List build output
+        run: |
+          echo "Listing build/web directory:"
+          ls -lah build/web/
+          echo ""
+          echo "Checking for main.dart.js:"
+          if [ -f "build/web/main.dart.js" ]; then
+            echo "✓ main.dart.js exists ($(du -h build/web/main.dart.js | cut -f1))"
+          else
+            echo "✗ main.dart.js is MISSING!"
+            exit 1
+          fi
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./build/web s3://bb-meet-production-app --delete
+      
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id EB265CSS8G2X \
+            --paths "/*"
