@@ -1,0 +1,76 @@
+name: Deploy Media Server
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  EC2_HOST: ${{ secrets.MEDIA_HOST }} # 3.215.239.166
+  EC2_USER: ec2-user
+  EC2_KEY: ${{ secrets.EC2_SSH_KEY }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+            gstreamer1.0-plugins-base gstreamer1.0-plugins-good \     
+            gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly \      
+            libgstrtspserver-1.0-dev gstreamer1.0-tools \
+            libssl-dev pkg-config
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Build Release Binaries
+      run: cargo build --release
+
+    - name: Prepare Deployment Artifacts
+      run: |
+        mkdir -p deploy
+        cp target/release/signalling deploy/
+        cp target/release/sfu deploy/
+        cp -r .env deploy/ || true
+        # Note: We don't overwrite .env if it exists on server, but for initial sync we might need it.
+        # Ideally, .env is managed manually on server or via secrets. 
+
+    - name: Deploy to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ env.EC2_HOST }}
+        username: ${{ env.EC2_USER }}
+        key: ${{ env.EC2_KEY }}
+        source: "target/release/signalling,target/release/sfu"        
+        target: "/home/ec2-user/bb-sdk-media/"
+        strip_components: 2
+
+    - name: Restart Services
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.EC2_HOST }}
+        username: ${{ env.EC2_USER }}
+        key: ${{ env.EC2_KEY }}
+        script: |
+          # Stop existing services
+          pkill -f signalling || true
+          pkill -f sfu || true
+
+          cd /home/ec2-user/bb-sdk-media
+          chmod +x signalling sfu
+
+          # Start new services
+          nohup ./signalling > ~/signalling.log 2>&1 &
+          nohup ./sfu > ~/sfu.log 2>&1 &
+
+          echo "Deployment Complete. Services restarted."
