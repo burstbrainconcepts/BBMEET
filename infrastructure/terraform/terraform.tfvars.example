@@ -1,0 +1,11 @@
+# Example terraform.tfvars file
+# Copy this to terraform.tfvars and fill in your values
+
+aws_region = "us-east-1"
+project_name = "bb-sdk"
+
+# REQUIRED: Set your database password
+db_password = "CHANGE_ME_TO_SECURE_PASSWORD"
+
+# REQUIRED: Set your IP for SSH access (get it from https://whatismyip.com)
+your_ip = "YOUR_IP_ADDRESS/32"
