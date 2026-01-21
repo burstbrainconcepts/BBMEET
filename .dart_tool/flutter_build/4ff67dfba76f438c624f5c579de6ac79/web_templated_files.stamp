@@ -1,0 +1,1 @@
+{"inputs":["E:\\waterbus\\web\\*\\index.html","E:\\waterbus\\web\\flutter_bootstrap.js","E:\\waterbus\\flutter-sdk\\bin\\cache\\engine.stamp"],"outputs":["E:\\waterbus\\build\\web\\*\\index.html","E:\\waterbus\\build\\web\\flutter_bootstrap.js"],"buildKey":"[{\"compileTarget\":\"dart2js\",\"renderer\":\"canvaskit\",\"mainJsPath\":\"main.dart.js\"},{}]"}

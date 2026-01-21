@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    restart: always
+    ports:
+      - "5985:3000"
+      - "50051:50051"
+      - "50052:50052"
+      - "50053:50053"
+    env_file:
+      - .env
+    environment:
+      - APP_PORT=3000
+      - RABBITMQ_HOST=rabbitmq
+      - TYPESENSE_HOST=typesense
+      - API_PREFIX=busapi/v3
+      - API_KEY=open@waterbus
+    depends_on:
+      - rabbitmq
+      - typesense
+    networks:
+      - bb-network
+
+  typesense:
+    image: typesense/typesense:0.24.1
+    restart: always
+    volumes:
+      - ./typesense-data:/data
+    command: '--data-dir /data --api-key=dummy-key --enable-cors'
+    networks:
+      - bb-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - bb-network
+
+networks:
+  bb-network:
+    driver: bridge

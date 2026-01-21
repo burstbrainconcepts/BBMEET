@@ -1,0 +1,21 @@
+PORT=5985
+GRPC_PORT=50054
+
+# Database
+DATABASE_TYPE=postgres
+DATABASE_URL=postgres://bbadmin:Princesali1@bb-sdk-postgres.cwn4uam28ybs.us-east-1.rds.amazonaws.com:5432/bbsdk?ssl=true
+DATABASE_SSL_ENABLED=true
+DATABASE_REJECT_UNAUTHORIZED=false
+
+# Redis
+REDIS_HOST=bb-sdk-api-redis.danby6.0001.use1.cache.amazonaws.com
+REDIS_PORT=6379
+
+# Auth Configuration
+AUTH_JWT_SECRET=bbmeet-jwt-secret-key-change-me-securely
+AUTH_JWT_TOKEN_EXPIRES_IN=7d
+AUTH_REFRESH_SECRET=bbmeet-refresh-secret-key-change-me-securely
+AUTH_REFRESH_TOKEN_EXPIRES_IN=30d
+
+# Legacy support
+JWT_SECRET=bbmeet-jwt-secret-key-change-me-securely

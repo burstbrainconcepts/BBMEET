@@ -1,122 +1,69 @@
-# CloudFront HTTPS Setup Script
-# Usage: .\enable_https.ps1 "my-bucket-name"
-param (
-    [string]$BucketName
-)
+$remoteScript = @"
+    set -e
+    echo "Starting SSL Setup on Amazon Linux 2023..."
 
-# 1. Check/Find AWS CLI
-$AwsExe = "aws"
-if (-not (Get-Command "aws" -ErrorAction SilentlyContinue)) {
-    $StandardPath = "C:\Program Files\Amazon\AWSCLIV2\aws.exe"
-    if (Test-Path $StandardPath) {
-        $AwsExe = $StandardPath
-    } else {
-        Write-Host "Error: AWS CLI not found." -ForegroundColor Red
-        exit 1
+    # 1. Install Nginx and Augeas
+    echo "Installing Nginx and Augeas..."
+    sudo dnf install -y nginx augeas-libs
+
+    # 2. Start Nginx
+    sudo systemctl enable nginx
+    sudo systemctl start nginx
+
+    # 3. Install Certbot via pip (Recommended for AL2023)
+    echo "Installing Certbot..."
+    sudo dnf remove -y certbot || true
+    sudo python3 -m venv /opt/certbot/
+    sudo /opt/certbot/bin/pip install --upgrade pip
+    sudo /opt/certbot/bin/pip install certbot certbot-nginx
+    sudo ln -fs /opt/certbot/bin/certbot /usr/bin/certbot
+
+    # 4. Create Nginx Configuration for api.bbmeet.site
+    echo "Configuring Nginx..."
+    sudo tee /etc/nginx/conf.d/api.bbmeet.site.conf > /dev/null <<'EOF'
+server {
+    server_name api.bbmeet.site;
+
+    location / {
+        proxy_pass http://127.0.0.1:5985;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade `$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host `$host;
+        proxy_set_header X-Real-IP `$remote_addr;
+        proxy_set_header X-Forwarded-For `$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto `$scheme;
+        proxy_cache_bypass `$http_upgrade;
     }
 }
+EOF
 
-# 2. Get Bucket Name
-if ([string]::IsNullOrEmpty($BucketName)) {
-    $BucketName = Read-Host "Enter your S3 Bucket Name (same as before)"
+    # 5. Reload Nginx to apply config
+    sudo systemctl reload nginx
+
+    # 6. Request SSL Certificate
+    echo "Requesting SSL Certificate..."
+    # Using --nginx plugin, non-interactive, agreeing to TOS
+    # Replace email with a generic admin email or prompt user? Using admin@bbmeet.site for now.
+    sudo certbot --nginx -d api.bbmeet.site -m admin@bbmeet.site --agree-tos -n --redirect
+
+    echo "SSL Setup Complete!"
+"@
+
+# Save locally to upload
+Set-Content -Path "setup_ssl.sh" -Value $remoteScript -Encoding ASCII
+(Get-Content "setup_ssl.sh" -Raw) -replace "`r`n", "`n" | Set-Content "setup_ssl.sh" -NoNewline
+
+# Upload and Execute
+Write-Host "Uploading SSL setup script..." -ForegroundColor Cyan
+scp -i bb-sdk-keypair.pem -o StrictHostKeyChecking=no setup_ssl.sh ec2-user@3.211.71.16:/home/ec2-user/
+
+Write-Host "Executing SSL setup on remote server..." -ForegroundColor Cyan
+ssh -i bb-sdk-keypair.pem -o StrictHostKeyChecking=no ec2-user@3.211.71.16 "bash setup_ssl.sh"
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "HTTPS Enabled Successfully!" -ForegroundColor Green
+    Write-Host "Verify at: https://api.bbmeet.site" -ForegroundColor Green
+} else {
+    Write-Host "SSL Setup Failed." -ForegroundColor Red
 }
-
-$Region = "us-east-1"
-$OriginDomain = "$BucketName.s3-website-$Region.amazonaws.com"
-
-Write-Host "`nSetting up CloudFront for: $OriginDomain" -ForegroundColor Cyan
-Write-Host "This creates a new distribution (takes ~1-2 min to request, 15 min to deploy)..." -ForegroundColor Yellow
-
-# 3. Create Distribution Config properly
-$DistConfig = @{
-    CallerReference = (Get-Date).Ticks.ToString()
-    Aliases = @{ Quantity = 0 }
-    DefaultRootObject = ""
-    Origins = @{
-        Quantity = 1
-        Items = @(
-            @{
-                Id = "S3-$BucketName"
-                DomainName = $OriginDomain
-                OriginPath = ""
-                CustomHeaders = @{ Quantity = 0 }
-                CustomOriginConfig = @{
-                    HTTPPort = 80
-                    HTTPSPort = 443
-                    OriginProtocolPolicy = "http-only"
-                    OriginSslProtocols = @{
-                        Quantity = 3
-                        Items = @("TLSv1", "TLSv1.1", "TLSv1.2")
-                    }
-                    OriginReadTimeout = 30
-                    OriginKeepaliveTimeout = 5
-                }
-            }
-        )
-    }
-    DefaultCacheBehavior = @{
-        TargetOriginId = "S3-$BucketName"
-        ViewerProtocolPolicy = "redirect-to-https"
-        MinTTL = 0
-        AllowedMethods = @{
-            Quantity = 2
-            Items = @("HEAD", "GET")
-            CachedMethods = @{
-                Quantity = 2
-                Items = @("HEAD", "GET")
-            }
-        }
-        SmoothStreaming = $false
-        DefaultTTL = 86400
-        MaxTTL = 31536000
-        Compress = $true
-        LambdaFunctionAssociations = @{ Quantity = 0 }
-        FunctionAssociations = @{ Quantity = 0 }
-        FieldLevelEncryptionId = ""
-        ForwardedValues = @{
-            QueryString = $false
-            Cookies = @{ Forward = "none" }
-            Headers = @{ Quantity = 0 }
-            QueryStringCacheKeys = @{ Quantity = 0 }
-        }
-        TrustedSigners = @{ Enabled = $false; Quantity = 0 }
-    }
-    CacheBehaviors = @{ Quantity = 0 }
-    CustomErrorResponses = @{ Quantity = 0 }
-    Comment = "Created by BB Meet Auto-Deploy"
-    Logging = @{
-        Enabled = $false
-        IncludeCookies = $false
-        Bucket = ""
-        Prefix = ""
-    }
-    PriceClass = "PriceClass_All"
-    Enabled = $true
-}
-
-$JsonConfig = $DistConfig | ConvertTo-Json -Depth 10
-$JsonFile = "cf_config.json"
-$JsonConfig | Out-File $JsonFile -Encoding ASCII
-
-# 4. Run Command
-Write-Host "Sending request to AWS..." -ForegroundColor Cyan
-try {
-    # Using Invoke-Expression to capture output easily with the complex args
-    $ResultJson = & $AwsExe cloudfront create-distribution --distribution-config file://$JsonFile
-    $Result = $ResultJson | ConvertFrom-Json
-    
-    $DomainName = $Result.Distribution.DomainName
-    $Id = $Result.Distribution.Id
-
-    Write-Host "`nSUCCESS!" -ForegroundColor Green
-    Write-Host "Key generated: $Id"
-    Write-Host "Your SECURE URL will be: https://$DomainName" -ForegroundColor Green
-    Write-Host "`nIMPORTANT: It takes about 15 MINUTES for this link to start working." -ForegroundColor Yellow
-    Write-Host "AWS has to replicate it to servers all over the world."
-}
-catch {
-    Write-Host "Failed to create distribution." -ForegroundColor Red
-    Write-Host $_
-}
-
-Remove-Item $JsonFile -ErrorAction SilentlyContinue

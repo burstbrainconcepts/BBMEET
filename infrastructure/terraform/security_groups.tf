@@ -12,12 +12,31 @@ resource "aws_security_group" "api_server" {
     cidr_blocks = [var.your_ip]
   }
 
-  # API Port
+  # API Port (Public Access for Direct Connection)
+  ingress {
+    from_port   = 5985
+    to_port     = 5985
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow public HTTP access to API server"
+  }
+
+  # API Port 5000 (Actual port being used)
+  ingress {
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow public HTTP access to API server on port 5000"
+  }
+
+  # API Port (ALB Access)
   ingress {
     from_port       = 5985
     to_port         = 5985
     protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
+    description     = "Allow ALB access to API server"
   }
 
   # WebSocket gRPC

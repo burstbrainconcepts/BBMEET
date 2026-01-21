@@ -1,0 +1,23 @@
+[Unit]
+Description=BB SDK SFU Server
+After=network.target
+Before=bb-sdk-media.service
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/bb-sdk-media
+Environment="APP_PORT=5998"
+Environment="DATABASE_URL=postgres://bbadmin:Princesali1@bb-sdk-postgres.cwn4uam28ybs.us-east-1.rds.amazonaws.com:5432/bbsdk"
+Environment="REDIS_URIS=redis://bb-sdk-media-redis-v2.danby6.clustercfg.use1.cache.amazonaws.com:6379?protocol=resp3"
+Environment="ETCD_URI=127.0.0.1:2379"
+Environment="PORT_MIN_UDP=19000"
+Environment="PORT_MAX_UDP=60000"
+Environment="STORAGE_BUCKET_NAME=bb-sdk-storage-84e75bf0"
+Environment="STORAGE_REGION=us-east-1"
+ExecStart=/home/ec2-user/bb-sdk-media/target/release/sfu
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
