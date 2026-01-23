@@ -1,0 +1,69 @@
+name: Deploy API Server
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "bb-sdk-api/**"
+      - ".github/workflows/api-deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-api-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  EC2_HOST: ${{ secrets.API_HOST }}
+  EC2_USER: ec2-user
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload API code to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ env.EC2_HOST }}
+          username: ${{ env.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "bb-sdk-api"
+          target: "/home/ec2-user/"
+          overwrite: true
+
+      - name: Build + restart API with PM2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ env.EC2_HOST }}
+          username: ${{ env.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -euo pipefail
+
+            cd /home/ec2-user/bb-sdk-api
+
+            # Ensure logs directory exists for PM2 ecosystem config
+            mkdir -p /home/ec2-user/bb-sdk-api/logs
+
+            # Install dependencies + build
+            if command -v yarn >/dev/null 2>&1; then
+              yarn install --frozen-lockfile
+              yarn build
+            else
+              npm ci
+              npm run build
+            fi
+
+            # Start/reload PM2 app
+            if ! command -v pm2 >/dev/null 2>&1; then
+              npm i -g pm2
+            fi
+
+            pm2 startOrReload ecosystem.config.js --env production
+            pm2 save
+
+

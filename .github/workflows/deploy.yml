@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "lib/**"
+      - "assets/**"
+      - "web/**"
+      - "packages/**"
+      - "pubspec.*"
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
 jobs:
@@ -66,10 +73,10 @@ jobs:
       
       - name: Deploy to S3
         run: |
-          aws s3 sync ./build/web s3://bb-meet-production-app --delete
+          aws s3 sync ./build/web s3://${{ secrets.WEB_S3_BUCKET }} --delete
       
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id EB265CSS8G2X \
+            --distribution-id ${{ secrets.WEB_CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
