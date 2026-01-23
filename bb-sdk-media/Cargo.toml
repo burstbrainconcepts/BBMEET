@@ -102,3 +102,8 @@ waterbus-proto = { path = "./crates/waterbus-proto" }
 webrtc-manager = { path = "./crates/webrtc-manager" }
 egress-manager = { path = "./crates/egress-manager" }
 dispatcher = { path = "./crates/dispatcher" }
+
+# Force unified web_transport version to resolve moq-gst dependency conflict
+[patch.crates-io]
+web-transport = "0.8.2"
+
