@@ -2,7 +2,8 @@
 members = [
     "signalling",
     "sfu",
-    "crates/egress-manager",
+    # Temporarily excluded due to moq-gst dependency conflict - will fix separately
+    # "crates/egress-manager",
     "crates/webrtc-manager",
     "crates/waterbus-proto",
     "crates/dispatcher",
@@ -102,9 +103,4 @@ waterbus-proto = { path = "./crates/waterbus-proto" }
 webrtc-manager = { path = "./crates/webrtc-manager" }
 egress-manager = { path = "./crates/egress-manager" }
 dispatcher = { path = "./crates/dispatcher" }
-
-# Force unified web_transport version to resolve moq-gst dependency conflict
-# This forces all crates to use the same web_transport version
-[patch.crates-io]
-web-transport = "0.8.2"
 
