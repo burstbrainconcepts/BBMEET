@@ -1,19 +1,4 @@
-# Rust
-/target/
-**/*.rs.bk
-Cargo.lock
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# Environment
+/target
 .env
-.env.local
-
-# Logs
-*.log
-
+.DS_Store
+hls
