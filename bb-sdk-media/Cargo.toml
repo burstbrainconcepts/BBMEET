@@ -2,8 +2,7 @@
 members = [
     "signalling",
     "sfu",
-    # Temporarily excluded due to moq-gst dependency conflict - will fix separately
-    # "crates/egress-manager",
+    "crates/egress-manager",
     "crates/webrtc-manager",
     "crates/waterbus-proto",
     "crates/dispatcher",
@@ -85,7 +84,7 @@ gst-pbutils = { package = "gstreamer-pbutils", git = "https://github.com/GStream
     "v1_20",
 ] }
 m3u8-rs = { git = "https://github.com/JeWe37/m3u8-rs", branch = "ll-hls" }
-moq-gst = { git = "https://github.com/waterbustech/moq-gst.git", branch = "main" }
+moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
 gst-plugin-fmp4 = "0.14.0"
 prost = "0.13.5"
 tonic = "0.13.1"
