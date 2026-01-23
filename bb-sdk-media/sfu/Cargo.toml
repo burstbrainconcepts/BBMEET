@@ -1,0 +1,30 @@
+[package]
+name = "sfu"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sfu"
+path = "src/main.rs"
+
+[dependencies]
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+# WebRTC
+webrtc = "0.10"
+futures-util = "0.3"
+
+# gRPC (if needed)
+# tonic = "0.10"
+# prost = "0.12"
+
+# Environment
+dotenv = "0.15"
+
