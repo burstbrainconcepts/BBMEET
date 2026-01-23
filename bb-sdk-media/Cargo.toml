@@ -104,6 +104,7 @@ egress-manager = { path = "./crates/egress-manager" }
 dispatcher = { path = "./crates/dispatcher" }
 
 # Force unified web_transport version to resolve moq-gst dependency conflict
+# This forces all crates to use the same web_transport version
 [patch.crates-io]
 web-transport = "0.8.2"
 
