@@ -2,17 +2,22 @@
 members = [
     "signalling",
     "sfu",
-    # egress-manager disabled: moq-gst has fundamental type incompatibility
-    # moq-native and moq-karp use different web-transport versions with incompatible types
-    # Types have different sizes (1600 vs 960 bits) - cannot transmute
-    # This is an upstream dependency conflict that needs fixing in moq-gst itself
-    # Core WebRTC functionality (signalling/sfu) works perfectly without it
-    # "crates/egress-manager",
+    "crates/egress-manager",  # Re-enabled with patched moq-gst
     "crates/webrtc-manager",
     "crates/waterbus-proto",
     "crates/dispatcher",
 ]
 resolver = "2"
+
+# Workspace-level features for CI/CD separation
+[workspace.metadata.features]
+default = ["core"]
+core = []  # Core WebRTC: signalling + sfu + webrtc-manager
+egress = ["crates/egress-manager"]  # Optional: HLS/MoQ streaming
+
+# Override upstream moq-gst with our fixed fork
+[patch.crates-io]
+moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
 
 [profile.release]
 opt-level = 3
@@ -105,6 +110,6 @@ bytes = "1.10.1"
 # Local crates
 waterbus-proto = { path = "./crates/waterbus-proto" }
 webrtc-manager = { path = "./crates/webrtc-manager" }
-# egress-manager = { path = "./crates/egress-manager" } # Disabled due to moq-gst dependency conflict
+egress-manager = { path = "./crates/egress-manager" }  # Re-enabled with patched moq-gst
 dispatcher = { path = "./crates/dispatcher" }
 

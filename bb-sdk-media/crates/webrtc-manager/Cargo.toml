@@ -16,13 +16,13 @@ tokio-util = { workspace = true }
 tracing = { workspace = true }
 nanoid = { workspace = true }
 webrtc = { workspace = true }
-# egress-manager = { workspace = true, optional = true } # Disabled due to moq-gst issues
+egress-manager = { workspace = true, optional = true }  # Optional: HLS/MoQ streaming
 crossbeam = { workspace = true }
 bytes = { workspace = true }
 
 [features]
-default = []
-# egress = ["egress-manager"] # Disabled due to moq-gst issues
+default = []  # Core WebRTC only
+egress = ["egress-manager"]  # Enable HLS/MoQ streaming features
 
 [dev-dependencies]
 mockall = "0.13.1"
