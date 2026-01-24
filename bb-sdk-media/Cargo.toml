@@ -2,7 +2,9 @@
 members = [
     "signalling",
     "sfu",
-    "crates/egress-manager",
+    # egress-manager temporarily disabled due to moq-gst dependency conflict
+    # This is for MoQ streaming feature - core WebRTC functionality (signalling/sfu) works without it
+    # "crates/egress-manager",
     "crates/webrtc-manager",
     "crates/waterbus-proto",
     "crates/dispatcher",
