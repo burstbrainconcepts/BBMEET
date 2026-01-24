@@ -1,0 +1,82 @@
+version: 0.2
+
+# CORE BUILD: Fast, stable WebRTC components (signalling + sfu)
+# This builds only the essential video conferencing infrastructure
+# No external dependencies like moq-gst - always reliable
+
+env:
+  variables:
+    MEDIA_HOST: 3.215.239.166
+    MEDIA_USER: ec2-user
+    SSM_PARAM: /bbmeet/ec2-ssh-key
+    RUST_BACKTRACE: "1"
+    BUILD_TYPE: "core"
+
+phases:
+  install:
+    commands:
+      # Install Rust toolchain
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      - source $HOME/.cargo/env
+      - rustup toolchain install stable
+      - rustup default stable
+      - rustc --version
+      - cargo --version
+      
+      # Install minimal system dependencies (core WebRTC only)
+      - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel
+      - dnf install -y aws-cli || yum install -y aws-cli
+      
+      # Setup SSH for deployment
+      - mkdir -p ~/.ssh
+      - aws ssm get-parameter --name "$SSM_PARAM" --with-decryption --query "Parameter.Value" --output text > ~/.ssh/deploy_key.pem
+      - chmod 600 ~/.ssh/deploy_key.pem
+      - ssh-keyscan -H "$MEDIA_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+  build:
+    commands:
+      - source $HOME/.cargo/env
+      - cd bb-sdk-media
+      
+      # Build ONLY core components (excludes egress-manager)
+      - echo "Building CORE components: signalling + sfu + webrtc-manager"
+      - cargo build --release --workspace --exclude egress-manager
+      
+      # Verify core binaries exist
+      - ls -lh target/release/signalling target/release/sfu
+      - echo "Core build completed successfully!"
+      
+      # Package for deployment
+      - tar -czf ../media-core-deploy.tar.gz target/release/signalling target/release/sfu
+      
+      # Deploy to EC2
+      - scp -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no ../media-core-deploy.tar.gz "$MEDIA_USER@$MEDIA_HOST:~/"
+      
+      # Create deployment script
+      - echo '#!/bin/bash' > deploy-core.sh
+      - echo 'cd ~/bb-sdk-media || mkdir -p ~/bb-sdk-media && cd ~/bb-sdk-media' >> deploy-core.sh
+      - echo 'tar -xzf ~/media-core-deploy.tar.gz' >> deploy-core.sh
+      - echo 'rm ~/media-core-deploy.tar.gz' >> deploy-core.sh
+      - echo 'chmod +x target/release/signalling target/release/sfu' >> deploy-core.sh
+      - echo 'pkill -f signalling || true' >> deploy-core.sh
+      - echo 'pkill -f sfu || true' >> deploy-core.sh
+      - echo 'nohup ./target/release/signalling > ~/signalling.log 2>&1 &' >> deploy-core.sh
+      - echo 'nohup ./target/release/sfu > ~/sfu.log 2>&1 &' >> deploy-core.sh
+      - echo 'sleep 2' >> deploy-core.sh
+      - echo 'ps aux | grep -E "(signalling|sfu)" | grep -v grep' >> deploy-core.sh
+      - echo 'echo "CORE media services restarted successfully"' >> deploy-core.sh
+      
+      # Execute deployment
+      - scp -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no deploy-core.sh "$MEDIA_USER@$MEDIA_HOST:~/"
+      - ssh -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no "$MEDIA_USER@$MEDIA_HOST" "bash ~/deploy-core.sh"
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: bb-sdk-media
+  
+cache:
+  paths:
+    - '/root/.cargo/registry/**/*'
+    - '/root/.cargo/git/**/*'
+    - 'bb-sdk-media/target/**/*'

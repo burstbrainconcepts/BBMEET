@@ -1,0 +1,97 @@
+version: 0.2
+
+# EGRESS BUILD: Experimental HLS/MoQ streaming features
+# This includes egress-manager with moq-gst dependencies
+# May be unstable due to external dependencies - separate from core
+
+env:
+  variables:
+    MEDIA_HOST: 3.215.239.166
+    MEDIA_USER: ec2-user
+    SSM_PARAM: /bbmeet/ec2-ssh-key
+    RUST_BACKTRACE: "1"
+    BUILD_TYPE: "egress"
+
+phases:
+  install:
+    commands:
+      # Install Rust toolchain (nightly for egress features)
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      - source $HOME/.cargo/env
+      - rustup toolchain install nightly
+      - rustup default nightly
+      - rustup component add rustfmt --toolchain nightly
+      - rustup component add clippy --toolchain nightly
+      - rustc --version
+      - cargo --version
+      
+      # Install full system dependencies (including GStreamer for egress)
+      - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel libffi-devel
+      - dnf install -y gstreamer1 gstreamer1-devel gstreamer1-plugins-base gstreamer1-plugins-base-devel gstreamer1-plugins-good gstreamer1-plugins-bad-free glib2-devel protobuf-compiler protobuf-devel
+      - dnf install -y gstreamer1-plugins-ugly || dnf install -y gstreamer1-plugins-ugly-free || true
+      - dnf install -y postgresql15-devel
+      - dnf install -y aws-cli || yum install -y aws-cli
+      
+      # Setup SSH for deployment
+      - mkdir -p ~/.ssh
+      - aws ssm get-parameter --name "$SSM_PARAM" --with-decryption --query "Parameter.Value" --output text > ~/.ssh/deploy_key.pem
+      - chmod 600 ~/.ssh/deploy_key.pem
+      - ssh-keyscan -H "$MEDIA_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+      
+      # Set environment for GStreamer
+      - export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+      - export GST_PLUGIN_PATH=/usr/lib64/gstreamer-1.0
+
+  build:
+    commands:
+      - source $HOME/.cargo/env
+      - export PKG_CONFIG_PATH=/usr/lib64/pkgconfig
+      - export GST_PLUGIN_PATH=/usr/lib64/gstreamer-1.0
+      - cd bb-sdk-media
+      
+      # Build ALL components including egress-manager
+      - echo "Building FULL STACK: core + egress-manager with HLS/MoQ streaming"
+      - pkg-config --modversion gstreamer-1.0
+      - cargo build --release --all-features
+      
+      # Verify all binaries exist
+      - ls -lh target/release/signalling target/release/sfu
+      - ls -lh target/release/egress-manager || echo "egress-manager not built (expected if disabled)"
+      - echo "Full egress build completed!"
+      
+      # Package for deployment (include egress if built)
+      - tar -czf ../media-egress-deploy.tar.gz target/release/signalling target/release/sfu $(find target/release -name "egress-manager" -type f)
+      
+      # Deploy to EC2
+      - scp -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no ../media-egress-deploy.tar.gz "$MEDIA_USER@$MEDIA_HOST:~/"
+      
+      # Create deployment script
+      - echo '#!/bin/bash' > deploy-egress.sh
+      - echo 'cd ~/bb-sdk-media || mkdir -p ~/bb-sdk-media && cd ~/bb-sdk-media' >> deploy-egress.sh
+      - echo 'tar -xzf ~/media-egress-deploy.tar.gz' >> deploy-egress.sh
+      - echo 'rm ~/media-egress-deploy.tar.gz' >> deploy-egress.sh
+      - echo 'chmod +x target/release/* 2>/dev/null || true' >> deploy-egress.sh
+      - echo 'pkill -f signalling || true' >> deploy-egress.sh
+      - echo 'pkill -f sfu || true' >> deploy-egress.sh
+      - echo 'pkill -f egress-manager || true' >> deploy-egress.sh
+      - echo 'nohup ./target/release/signalling > ~/signalling.log 2>&1 &' >> deploy-egress.sh
+      - echo 'nohup ./target/release/sfu > ~/sfu.log 2>&1 &' >> deploy-egress.sh
+      - echo 'if [ -f "./target/release/egress-manager" ]; then nohup ./target/release/egress-manager > ~/egress.log 2>&1 & fi' >> deploy-egress.sh
+      - echo 'sleep 3' >> deploy-egress.sh
+      - echo 'ps aux | grep -E "(signalling|sfu|egress-manager)" | grep -v grep' >> deploy-egress.sh
+      - echo 'echo "FULL STACK media services restarted successfully"' >> deploy-egress.sh
+      
+      # Execute deployment
+      - scp -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no deploy-egress.sh "$MEDIA_USER@$MEDIA_HOST:~/"
+      - ssh -i ~/.ssh/deploy_key.pem -o StrictHostKeyChecking=no "$MEDIA_USER@$MEDIA_HOST" "bash ~/deploy-egress.sh"
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: bb-sdk-media
+  
+cache:
+  paths:
+    - '/root/.cargo/registry/**/*'
+    - '/root/.cargo/git/**/*'
+    - 'bb-sdk-media/target/**/*'
