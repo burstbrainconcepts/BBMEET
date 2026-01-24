@@ -1,5 +1,7 @@
 use dashmap::DashMap;
+#[cfg(feature = "egress")]
 use egress_manager::egress::hls_writer::HlsWriter;
+#[cfg(feature = "egress")]
 use egress_manager::egress::moq_writer::MoQWriter;
 use std::str::FromStr;
 use std::sync::Arc;

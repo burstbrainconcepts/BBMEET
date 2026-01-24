@@ -163,4 +163,4 @@ Use it freely, fork it, build amazing things.
 
 Got questions, feedback, or ideas? Reach out anytime at lambiengcode@gmail.com
 
-Made with 💙 by the Waterbus Team.
+

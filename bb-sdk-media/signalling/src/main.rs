@@ -64,3 +64,4 @@ async fn run_server<A: Acceptor + Send>(server: Server<A>, env: &AppEnv) {
     // Start the server
     server.serve(get_salvo_service(env).await).await;
 }
+

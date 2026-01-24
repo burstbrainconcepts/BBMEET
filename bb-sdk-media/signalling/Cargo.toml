@@ -40,3 +40,4 @@ rust-embed = { workspace = true }
 
 dispatcher = { workspace = true }
 waterbus-proto = { workspace = true }
+

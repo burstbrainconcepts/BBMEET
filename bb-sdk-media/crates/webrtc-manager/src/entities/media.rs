@@ -1,6 +1,7 @@
 use std::{fs, path::Path, sync::Arc};
 
 use dashmap::DashMap;
+#[cfg(feature = "egress")]
 use egress_manager::egress::{hls_writer::HlsWriter, moq_writer::MoQWriter};
 use nanoid::nanoid;
 use parking_lot::RwLock;
@@ -22,7 +23,9 @@ pub struct Media {
     pub participant_id: String,
     pub tracks: Arc<DashMap<String, TrackMutexWrapper>>,
     pub state: Arc<RwLock<MediaState>>,
+    #[cfg(feature = "egress")]
     hls_writer: Option<Arc<HlsWriter>>,
+    #[cfg(feature = "egress")]
     moq_writer: Option<Arc<MoQWriter>>,
     output_dir: String,
     sdp: Option<String>,
@@ -60,7 +63,9 @@ impl Media {
             media_id: format!("m_{}", nanoid!(12)),
             participant_id: publisher_id,
             tracks: Arc::new(DashMap::new()),
+            #[cfg(feature = "egress")]
             hls_writer: None,
+            #[cfg(feature = "egress")]
             moq_writer: None,
             output_dir,
             sdp: None,
@@ -80,16 +85,28 @@ impl Media {
         }
     }
 
+    #[cfg(feature = "egress")]
     pub async fn initialize_hls_writer(&mut self) -> Result<(), Box<dyn std::error::Error>> {
         let hls_writer = HlsWriter::new(&self.output_dir, self.participant_id.clone()).await?;
         self.hls_writer = Some(Arc::new(hls_writer));
         Ok(())
     }
 
+    #[cfg(not(feature = "egress"))]
+    pub async fn initialize_hls_writer(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+        Ok(()) // No-op when egress feature is disabled
+    }
+
+    #[cfg(feature = "egress")]
     pub fn initialize_moq_writer(&mut self) -> Result<(), anyhow::Error> {
         let moq_writer = MoQWriter::new(&self.participant_id.clone())?;
         self.moq_writer = Some(Arc::new(moq_writer));
         Ok(())
+    }
+
+    #[cfg(not(feature = "egress"))]
+    pub fn initialize_moq_writer(&mut self) -> Result<(), anyhow::Error> {
+        Ok(()) // No-op when egress feature is disabled
     }
 
     pub fn cache_sdp(&mut self, sdp: String) {
