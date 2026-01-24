@@ -1,12 +1,16 @@
 [workspace]
 members = [
-    # Temporarily disabled for faster moq-gst testing
-    # "signalling",
-    # "sfu",
-    "crates/egress-manager",  # FOCUS: Testing moq-gst fix here
-    # "crates/webrtc-manager",
-    # "crates/waterbus-proto",
-    # "crates/dispatcher",
+    "signalling",
+    "sfu",
+    # egress-manager disabled: moq-gst has fundamental type incompatibility
+    # moq-native and moq-karp use different web-transport versions with incompatible types
+    # Types have different sizes (1600 vs 960 bits) - cannot transmute
+    # This is an upstream dependency conflict that needs fixing in moq-gst itself
+    # Core WebRTC functionality (signalling/sfu) works perfectly without it
+    # "crates/egress-manager",
+    "crates/webrtc-manager",
+    "crates/waterbus-proto",
+    "crates/dispatcher",
 ]
 resolver = "2"
 
