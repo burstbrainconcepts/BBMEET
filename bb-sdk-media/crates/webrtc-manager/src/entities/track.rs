@@ -3,6 +3,13 @@ use dashmap::DashMap;
 use egress_manager::egress::hls_writer::HlsWriter;
 #[cfg(feature = "egress")]
 use egress_manager::egress::moq_writer::MoQWriter;
+
+// Type aliases for when egress feature is disabled
+#[cfg(not(feature = "egress"))]
+type HlsWriter = ();
+#[cfg(not(feature = "egress"))]
+type MoQWriter = ();
+
 use std::str::FromStr;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};

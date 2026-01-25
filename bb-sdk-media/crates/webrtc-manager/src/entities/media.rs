@@ -167,21 +167,43 @@ impl Media {
                 _ => "h264",
             };
 
+            #[cfg(feature = "egress")]
             if let Some(hls_writer) = &self.hls_writer {
                 hls_writer.set_video_codec(codec);
             }
 
+            #[cfg(feature = "egress")]
             if let Some(moq_writer) = &self.moq_writer {
                 moq_writer.set_video_codec(codec);
             }
         }
 
+        let hls_writer = {
+            #[cfg(feature = "egress")]
+            {
+                self.hls_writer.clone()
+            }
+            #[cfg(not(feature = "egress"))]
+            {
+                None
+            }
+        };
+        let moq_writer = {
+            #[cfg(feature = "egress")]
+            {
+                self.moq_writer.clone()
+            }
+            #[cfg(not(feature = "egress"))]
+            {
+                None
+            }
+        };
         let new_track = Arc::new(RwLock::new(Track::new(
             rtp_track.clone(),
             room_id,
             self.participant_id.clone(),
-            self.hls_writer.clone(),
-            self.moq_writer.clone(),
+            hls_writer,
+            moq_writer,
             self.keyframe_request_callback.clone(),
         )));
 
@@ -270,9 +292,11 @@ impl Media {
     pub fn stop(&self) {
         self.remove_all_tracks();
 
+        #[cfg(feature = "egress")]
         if let Some(writer) = &self.hls_writer {
             writer.stop();
         }
+        #[cfg(feature = "egress")]
         if let Some(writer) = &self.moq_writer {
             writer.stop();
         }
