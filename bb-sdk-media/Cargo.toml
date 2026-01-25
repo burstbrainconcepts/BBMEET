@@ -111,6 +111,6 @@ bytes = "1.10.1"
 # Local crates
 waterbus-proto = { path = "./crates/waterbus-proto" }
 webrtc-manager = { path = "./crates/webrtc-manager" }
-# egress-manager = { path = "./crates/egress-manager" }  # DISABLED: moq-gst type incompatibility
+egress-manager = { path = "./crates/egress-manager" }  # Optional: only used when egress feature is enabled
 dispatcher = { path = "./crates/dispatcher" }
 
