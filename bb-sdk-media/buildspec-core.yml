@@ -24,19 +24,35 @@ phases:
           - |
             # Generate self-signed certificates for TLS (required at compile time)
             cd bb-sdk-media
+            mkdir -p certificates
             if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
               openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
                 -keyout certificates/key.pem \
                 -out certificates/cert.pem \
                 -days 365 \
                 -nodes \
-                -subj "/CN=localhost" || echo "Warning: Failed to generate certificates"
+                -subj "/CN=localhost" 2>&1 || echo "Warning: Failed to generate certificates"
+              ls -la certificates/ || echo "Certificates directory check failed"
             fi
 
   build:
     commands:
       - source $HOME/.cargo/env
       - cd bb-sdk-media
+      - |
+        # Ensure certificates exist before build (fallback if install phase didn't create them)
+        if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
+          echo "Certificates not found, generating..."
+          mkdir -p certificates
+          openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
+            -keyout certificates/key.pem \
+            -out certificates/cert.pem \
+            -days 365 \
+            -nodes \
+            -subj "/CN=localhost" 2>&1
+          echo "Certificate generation complete"
+        fi
+        ls -la certificates/ || echo "Warning: Cannot list certificates directory"
       - echo "Building CORE components - signalling + sfu + webrtc-manager"
       - cargo build --release --workspace --exclude egress-manager
       - ls -lh target/release/signalling target/release/sfu
