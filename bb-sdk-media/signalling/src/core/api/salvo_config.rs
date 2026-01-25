@@ -31,6 +31,7 @@ use crate::{
     },
 };
 
+// HLS assets - folder may be empty at compile time (created at runtime by egress-manager)
 #[derive(RustEmbed)]
 #[folder = "../hls"]
 struct HlsAssets;

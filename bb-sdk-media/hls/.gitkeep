@@ -1,0 +1,3 @@
+# This directory is created at runtime by egress-manager
+# An empty directory is needed at compile time for rust-embed
+
