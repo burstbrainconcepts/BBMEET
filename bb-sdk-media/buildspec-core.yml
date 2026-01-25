@@ -15,7 +15,7 @@ phases:
       - rustup default stable
       - rustc --version
       - cargo --version
-      - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel
+      - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel protobuf-compiler protobuf-devel
       - dnf install -y aws-cli || yum install -y aws-cli
       - mkdir -p ~/.ssh
       - aws ssm get-parameter --name "$SSM_PARAM" --with-decryption --query "Parameter.Value" --output text > ~/.ssh/deploy_key.pem
