@@ -38,19 +38,35 @@ phases:
   build:
     commands:
       - source $HOME/.cargo/env
-      - pwd
-      - ls -la
       - |
-        # Navigate to bb-sdk-media directory (handle different CodeBuild working directories)
+        # Debug: Show current location and environment
+        echo "CODEBUILD_SRC_DIR: ${CODEBUILD_SRC_DIR:-not set}"
+        pwd
+        echo "--- Directory contents ---"
+        ls -la
+        echo "--- Looking for bb-sdk-media ---"
         if [ -d bb-sdk-media ]; then
+          echo "Found bb-sdk-media directory, changing into it"
           cd bb-sdk-media
         elif [ -f Cargo.toml ] && [ -d signalling ]; then
-          echo "Already in bb-sdk-media directory"
+          echo "Already in bb-sdk-media directory (found Cargo.toml and signalling/)"
         else
           echo "ERROR: Cannot find bb-sdk-media directory"
-          exit 1
+          echo "Current directory contents:"
+          ls -la
+          echo "Trying to find bb-sdk-media from CODEBUILD_SRC_DIR..."
+          if [ -n "$CODEBUILD_SRC_DIR" ] && [ -d "$CODEBUILD_SRC_DIR/bb-sdk-media" ]; then
+            cd "$CODEBUILD_SRC_DIR/bb-sdk-media"
+            echo "Successfully changed to $CODEBUILD_SRC_DIR/bb-sdk-media"
+          else
+            echo "FATAL: Cannot locate bb-sdk-media directory"
+            exit 1
+          fi
         fi
+        echo "Final working directory:"
         pwd
+        echo "Verifying we're in the right place:"
+        ls -la | head -20
       - |
         # Ensure certificates exist before build (fallback if install phase didn't create them)
         if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
