@@ -7,33 +7,33 @@ env:
     RUST_BACKTRACE: "1"
 
 phases:
-      install:
-        commands:
-          - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          - source $HOME/.cargo/env
-          - rustup toolchain install stable
-          - rustup default stable
-          - rustc --version
-          - cargo --version
-          - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel protobuf-compiler protobuf-devel openssl
-          - dnf install -y aws-cli || yum install -y aws-cli
-          - mkdir -p ~/.ssh
-          - aws ssm get-parameter --name "$SSM_PARAM" --with-decryption --query "Parameter.Value" --output text > ~/.ssh/deploy_key.pem
-          - chmod 600 ~/.ssh/deploy_key.pem
-          - ssh-keyscan -H "$MEDIA_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
-          - |
-            # Generate self-signed certificates for TLS (required at compile time)
-            cd bb-sdk-media
-            mkdir -p certificates
-            if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
-              openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
-                -keyout certificates/key.pem \
-                -out certificates/cert.pem \
-                -days 365 \
-                -nodes \
-                -subj "/CN=localhost" 2>&1 || echo "Warning: Failed to generate certificates"
-              ls -la certificates/ || echo "Certificates directory check failed"
-            fi
+  install:
+    commands:
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      - source $HOME/.cargo/env
+      - rustup toolchain install stable
+      - rustup default stable
+      - rustc --version
+      - cargo --version
+      - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel protobuf-compiler protobuf-devel openssl
+      - dnf install -y aws-cli || yum install -y aws-cli
+      - mkdir -p ~/.ssh
+      - aws ssm get-parameter --name "$SSM_PARAM" --with-decryption --query "Parameter.Value" --output text > ~/.ssh/deploy_key.pem
+      - chmod 600 ~/.ssh/deploy_key.pem
+      - ssh-keyscan -H "$MEDIA_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+      - |
+        # Generate self-signed certificates for TLS (required at compile time)
+        cd bb-sdk-media
+        mkdir -p certificates
+        if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
+          openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
+            -keyout certificates/key.pem \
+            -out certificates/cert.pem \
+            -days 365 \
+            -nodes \
+            -subj "/CN=localhost" 2>&1 || echo "Warning: Failed to generate certificates"
+          ls -la certificates/ || echo "Certificates directory check failed"
+        fi
 
   build:
     commands:
