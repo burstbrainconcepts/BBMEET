@@ -16,6 +16,9 @@ categories = ["multimedia", "network-programming", "web-programming"]
 [dependencies]
 moq-native = "0.6"
 moq-karp = "0.14"
+# Force compatible web-transport-quinn version
+# This is a workaround for the type incompatibility issue
+web-transport-quinn = "0.4"
 web-transport-quinn = "0.4"
 
 gst = { package = "gstreamer", version = "0.23" }
