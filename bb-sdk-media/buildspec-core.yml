@@ -38,7 +38,19 @@ phases:
   build:
     commands:
       - source $HOME/.cargo/env
-      - cd bb-sdk-media
+      - pwd
+      - ls -la
+      - |
+        # Navigate to bb-sdk-media directory (handle different CodeBuild working directories)
+        if [ -d bb-sdk-media ]; then
+          cd bb-sdk-media
+        elif [ -f Cargo.toml ] && [ -d signalling ]; then
+          echo "Already in bb-sdk-media directory"
+        else
+          echo "ERROR: Cannot find bb-sdk-media directory"
+          exit 1
+        fi
+        pwd
       - |
         # Ensure certificates exist before build (fallback if install phase didn't create them)
         if [ ! -f certificates/cert.pem ] || [ ! -f certificates/key.pem ]; then
