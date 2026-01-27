@@ -29,7 +29,7 @@ phases:
       - dnf install -y gcc gcc-c++ make cmake clang pkg-config openssl-devel libffi-devel
       - dnf install -y gstreamer1 gstreamer1-devel gstreamer1-plugins-base gstreamer1-plugins-base-devel gstreamer1-plugins-good gstreamer1-plugins-bad-free glib2-devel protobuf-compiler protobuf-devel
       - dnf install -y gstreamer1-plugins-ugly || dnf install -y gstreamer1-plugins-ugly-free || true
-      - dnf install -y postgresql15-devel
+      - dnf install -y --allowerasing postgresql15-devel || dnf install -y libpq-devel || true
       - dnf install -y aws-cli || yum install -y aws-cli
       
       # Setup SSH for deployment
