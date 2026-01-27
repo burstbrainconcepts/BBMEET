@@ -2,7 +2,7 @@
 members = [
     "signalling",
     "sfu",
-    # "crates/egress-manager",  # DISABLED: moq-gst type incompatibility issue
+    "crates/egress-manager",  # DISABLED: moq-gst type incompatibility issue
     # Use buildspec-egress.yml for experimental builds with egress features
     "crates/webrtc-manager",
     "crates/waterbus-proto",
@@ -17,8 +17,8 @@ core = []  # Core WebRTC: signalling + sfu + webrtc-manager
 egress = ["crates/egress-manager"]  # Optional: HLS/MoQ streaming
 
 # Override upstream moq-gst with our fixed fork (only needed for egress-manager builds)
-# [patch.crates-io]
-# moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
+[patch.crates-io]
+moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
 
 [profile.release]
 opt-level = 3
