@@ -50,7 +50,7 @@ phases:
       - cd bb-sdk-media
       
       # Build ALL components including egress-manager
-      - echo "Building FULL STACK: core + egress-manager with HLS/MoQ streaming"
+      - 'echo "Building FULL STACK: core + egress-manager with HLS/MoQ streaming"'
       - pkg-config --modversion gstreamer-1.0
       - cargo build --release --all-features
       
@@ -95,3 +95,5 @@ cache:
     - '/root/.cargo/registry/**/*'
     - '/root/.cargo/git/**/*'
     - 'bb-sdk-media/target/**/*'
+
+
