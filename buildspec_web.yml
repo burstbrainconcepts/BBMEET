@@ -16,6 +16,12 @@ phases:
     commands:
       - echo Building Web App...
       - flutter build web --release --verbose
+  post_build:
+    commands:
+      - echo Deploying to S3...
+      - aws s3 sync build/web s3://bb-meet-production-app --delete
+      - echo Invalidating CloudFront Cache...
+      - aws cloudfront create-invalidation --distribution-id EB265CSS8G2X --paths "/*"
 artifacts:
   files:
     - '**/*'
