@@ -20,7 +20,13 @@ phases:
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync build/web s3://bb-meet-production-app --delete
+      # First sync everything except fonts
+      - aws s3 sync build/web s3://bb-meet-production-app --delete --exclude "*.ttf" --exclude "*.otf" --exclude "*.woff" --exclude "*.woff2"
+      # Then sync fonts with correct Content-Type
+      - aws s3 sync build/web s3://bb-meet-production-app --exclude "*" --include "*.ttf" --content-type "font/ttf"
+      - aws s3 sync build/web s3://bb-meet-production-app --exclude "*" --include "*.otf" --content-type "font/otf"
+      - aws s3 sync build/web s3://bb-meet-production-app --exclude "*" --include "*.woff" --content-type "font/woff"
+      - aws s3 sync build/web s3://bb-meet-production-app --exclude "*" --include "*.woff2" --content-type "font/woff2"
       - echo Invalidating CloudFront Cache...
       - aws cloudfront create-invalidation --distribution-id EB265CSS8G2X --paths "/*"
 artifacts:
