@@ -1,0 +1,168 @@
+{
+    "family": "bbmeet-api-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::153402911459:role/ecsTaskExecutionRole",
+    "cpu": "1024",
+    "memory": "3072",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "containerDefinitions": [
+        {
+            "name": "bbmeet-api-container",
+            "image": "153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-api:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 50051,
+                    "hostPort": 50051,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 50052,
+                    "hostPort": 50052,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 50053,
+                    "hostPort": 50053,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 50054,
+                    "hostPort": 50054,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "APP_PORT",
+                    "value": "3000"
+                },
+                {
+                    "name": "NODE_TLS_REJECT_UNAUTHORIZED",
+                    "value": "0"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "DATABASE_TYPE",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_TYPE"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_URL"
+                },
+                {
+                    "name": "DATABASE_SSL_ENABLED",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_SSL_ENABLED"
+                },
+                {
+                    "name": "DATABASE_REJECT_UNAUTHORIZED",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_REJECT_UNAUTHORIZED"
+                },
+                {
+                    "name": "DATABASE_SYNCHRONIZE",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_SYNCHRONIZE"
+                },
+                {
+                    "name": "AUTH_JWT_SECRET",
+                    "valueFrom": "/bbmeet/production/api/AUTH_JWT_SECRET"
+                },
+                {
+                    "name": "AUTH_JWT_TOKEN_EXPIRES_IN",
+                    "valueFrom": "/bbmeet/production/api/AUTH_JWT_TOKEN_EXPIRES_IN"
+                },
+                {
+                    "name": "AUTH_REFRESH_SECRET",
+                    "valueFrom": "/bbmeet/production/api/AUTH_REFRESH_SECRET"
+                },
+                {
+                    "name": "AUTH_REFRESH_TOKEN_EXPIRES_IN",
+                    "valueFrom": "/bbmeet/production/api/AUTH_REFRESH_TOKEN_EXPIRES_IN"
+                },
+                {
+                    "name": "API_KEY",
+                    "valueFrom": "/bbmeet/production/api/API_KEY"
+                },
+                {
+                    "name": "JWT_SECRET",
+                    "valueFrom": "/bbmeet/production/api/JWT_SECRET"
+                },
+                {
+                    "name": "RABBITMQ_HOST",
+                    "valueFrom": "/bbmeet/production/api/RABBITMQ_HOST"
+                },
+                {
+                    "name": "RABBITMQ_PORT",
+                    "valueFrom": "/bbmeet/production/api/RABBITMQ_PORT"
+                },
+                {
+                    "name": "RABBITMQ_USER",
+                    "valueFrom": "/bbmeet/production/api/RABBITMQ_USER"
+                },
+                {
+                    "name": "RABBITMQ_PASSWORD",
+                    "valueFrom": "/bbmeet/production/api/RABBITMQ_PASSWORD"
+                },
+                {
+                    "name": "REDIS_HOST",
+                    "valueFrom": "/bbmeet/production/api/REDIS_HOST"
+                },
+                {
+                    "name": "REDIS_PORT",
+                    "valueFrom": "/bbmeet/production/api/REDIS_PORT"
+                },
+                {
+                    "name": "TYPESENSE_HOST",
+                    "valueFrom": "/bbmeet/production/api/TYPESENSE_HOST"
+                },
+                {
+                    "name": "TYPESENSE_PORT",
+                    "valueFrom": "/bbmeet/production/api/TYPESENSE_PORT"
+                },
+                {
+                    "name": "TYPESENSE_API_KEY",
+                    "valueFrom": "/bbmeet/production/api/TYPESENSE_API_KEY"
+                },
+                {
+                    "name": "GRPC_PORT",
+                    "valueFrom": "/bbmeet/production/api/GRPC_PORT"
+                },
+                {
+                    "name": "AUTH_GRPC_URL",
+                    "valueFrom": "/bbmeet/production/api/AUTH_GRPC_URL"
+                },
+                {
+                    "name": "WHITE_BOARD_GRPC_URL",
+                    "valueFrom": "/bbmeet/production/api/WHITE_BOARD_GRPC_URL"
+                },
+                {
+                    "name": "MEETING_GRPC_URL",
+                    "valueFrom": "/bbmeet/production/api/MEETING_GRPC_URL"
+                },
+                {
+                    "name": "WEBSOCKET_GRPC_ADDRESS",
+                    "valueFrom": "/bbmeet/production/api/WEBSOCKET_GRPC_ADDRESS"
+                },
+                {
+                    "name": "RECORD_GRPC_URL",
+                    "valueFrom": "/bbmeet/production/api/RECORD_GRPC_URL"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/bbmeet-api",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ]
+}
