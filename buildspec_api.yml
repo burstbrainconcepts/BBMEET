@@ -24,7 +24,12 @@ phases:
     commands:
       - echo "Building Docker image..."
       - cd bb-sdk-api
-      - docker build -t $ECR_REPO_URI:$IMAGE_TAG .
+      - ls -la
+      - echo "--- Checking dockerfile content ---"
+      - cat dockerfile || echo "dockerfile not found (lowercase)"
+      - cat Dockerfile || echo "Dockerfile not found (Uppercase)"
+      - echo "-----------------------------------"
+      - docker build -f dockerfile -t $ECR_REPO_URI:$IMAGE_TAG .
 
   post_build:
     commands:
