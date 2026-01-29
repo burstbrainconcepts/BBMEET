@@ -1,15 +1,55 @@
-FROM node:20-alpine
+# ============================================
+# Multi-stage Dockerfile for bb-sdk-api
+# Optimized for AWS ECS Fargate deployment
+# ============================================
 
-# WORKDIR
+# Stage 1: Build
+FROM node:20-alpine AS builder
+
 WORKDIR /app
 
-# COPY
+# Copy package files first (better caching)
+COPY package*.json ./
+
+# Install all dependencies (including dev for build)
+RUN npm ci --legacy-peer-deps
+
+# Copy source code
 COPY . .
 
-# install dependencies & build
-RUN rm -rf node_modules
-RUN yarn
-RUN yarn build
+# Build the application
+RUN npm run build
 
-# run image
-CMD [ "yarn", "start:prod" ]
+# Prune dev dependencies
+RUN npm prune --production
+
+# ============================================
+# Stage 2: Production
+FROM node:20-alpine AS production
+
+WORKDIR /app
+
+# Set environment
+ENV NODE_ENV=production
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nestjs -u 1001
+
+# Copy built application from builder stage
+COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
+COPY --from=builder --chown=nestjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nestjs:nodejs /app/package.json ./
+
+# Switch to non-root user
+USER nestjs
+
+# Expose ports (HTTP + gRPC)
+EXPOSE 3000 50051 50052 50053 50054
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:3000/health || exit 1
+
+# Start the application
+CMD ["node", "dist/main"]
