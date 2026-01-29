@@ -36,11 +36,11 @@ void main(List<String> args) async {
 
       final List<Future> futures = [
         ImageUtils().init(),
-        WaterbusSdk.instance.initialize(
           config: SdkConfig(
             serverConfig: ServerConfig(
               url: Endpoints.baseUrl,
               suffixUrl: Endpoints.suffixUrl,
+              apiKey: 'bbmeet-general-api-key',
             ),
           ),
         ),
