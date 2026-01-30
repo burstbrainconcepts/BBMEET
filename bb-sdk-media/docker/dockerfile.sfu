@@ -1,5 +1,5 @@
 # --- Build stage ---
-FROM docker.io/rustlang/rust:nightly AS builder
+FROM public.ecr.aws/docker/library/rust:nightly-bookworm AS builder
 
 RUN apt-get update && apt-get install -y \
     pkg-config libssl-dev cmake clang protobuf-compiler \
@@ -19,7 +19,7 @@ COPY sfu ./sfu
 RUN cargo build --release --bin sfu
 
 # --- Runtime stage ---
-FROM debian:trixie-slim
+FROM public.ecr.aws/docker/library/debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y \
     libssl-dev ca-certificates curl jq \

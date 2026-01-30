@@ -1,5 +1,5 @@
 # --- Build stage ---
-FROM docker.io/rustlang/rust:nightly AS builder
+FROM public.ecr.aws/docker/library/rust:nightly-bookworm AS builder
 
 WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \
@@ -18,7 +18,7 @@ COPY certificates ./certificates
 RUN cargo build --release --bin signalling
 
 # --- Runtime stage ---
-FROM debian:trixie-slim
+FROM public.ecr.aws/docker/library/debian:bookworm-slim
 
 # Install PostgreSQL client libraries and runtime dependencies
 RUN apt-get update && \
