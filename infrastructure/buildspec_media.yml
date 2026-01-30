@@ -1,11 +1,18 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    DOCKERHUB_USERNAME: "ecr-pullthroughcache/docker-hub:username"
+    DOCKERHUB_PASSWORD: "ecr-pullthroughcache/docker-hub:accessToken"
+
 phases:
   install:
     commands:
       # Install dependencies (if needed, though we use multistage builds)
   pre_build:
     commands:
+      - echo Logging in to Docker Hub...
+      - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 153402911459.dkr.ecr.us-east-1.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
@@ -14,10 +21,6 @@ phases:
       # Check and create repositories if they don't exist
       - aws ecr describe-repositories --repository-names bbmeet-sfu || aws ecr create-repository --repository-name bbmeet-sfu
       - aws ecr describe-repositories --repository-names bbmeet-signalling || aws ecr create-repository --repository-name bbmeet-signalling
-      # Prime ECR pull-through cache - explicit pull triggers cached repo creation
-      - echo Pulling base images via ECR pull-through cache...
-      - docker pull 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/library/rust:nightly
-      - docker pull public.ecr.aws/docker/library/debian:bookworm-slim
       
   build:
     commands:
