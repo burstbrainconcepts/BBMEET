@@ -1,5 +1,5 @@
 # --- Build stage ---
-FROM docker.io/library/debian:bookworm AS builder
+FROM public.ecr.aws/docker/library/debian:bookworm AS builder
 
 # Install build dependencies and Rustup
 RUN apt-get update && apt-get install -y \
