@@ -4,11 +4,14 @@ use gst::prelude::*;
 use gst::subclass::prelude::*;
 
 use moq_karp::moq_transfork;
-
-use moq_native::{quic, tls};
 use once_cell::sync::Lazy;
+use std::sync::Arc;
 use std::sync::LazyLock;
 use std::sync::Mutex;
+use quinn::{ClientConfig, Endpoint, TransportConfig};
+use rustls::pki_types::ServerName;
+use rustls::ClientConfig as RustlsClientConfig;
+use std::time::Duration;
 
 static CAT: Lazy<gst::DebugCategory> =
 	Lazy::new(|| gst::DebugCategory::new("moqsrc", gst::DebugColorFlags::empty(), Some("MoQ Source Element")));
@@ -147,32 +150,43 @@ impl ElementImpl for MoqSrc {
 
 impl MoqSrc {
 	async fn setup(&self) -> anyhow::Result<()> {
-		let (quic, url, path) = {
+		let (url, path, tls_disable_verify) = {
 			let settings = self.settings.lock().unwrap();
 			let url = url::Url::parse(&settings.url)?;
 			let path = url.path().strip_prefix("/").unwrap().to_string();
-
-			// TODO support TLS certs and other options
-			let quic = quic::Args {
-				bind: "[::]:0".parse().unwrap(),
-				tls: tls::Args {
-					disable_verify: settings.tls_disable_verify,
-					..Default::default()
-				},
-			};
-
-			(quic, url, path)
+			(url, path, settings.tls_disable_verify)
 		};
 
-		let quic = quic.load()?;
-		let client = quic::Endpoint::new(quic)?.client;
-
-		// FIXED: Same approach as sink - attempt to bridge the session
-		// The type mismatch issue needs to be resolved at the dependency level
-		let session = client.connect(url).await?;
+		// FIXED: Create QUIC connection directly using quinn, then create web-transport-quinn 0.5.0 session
+		// This bypasses moq-native's session creation and uses the version that moq-karp expects
+		
+		// Create quinn endpoint
+		let client_config = create_quinn_client_config(tls_disable_verify)?;
+		let endpoint = Endpoint::client("[::]:0".parse().unwrap())?;
+		endpoint.set_default_client_config(client_config);
+		
+		// Resolve DNS
+		let host = url.host_str().context("missing hostname")?.to_string();
+		let port = url.port().unwrap_or(443);
+		let server_name = ServerName::try_from(host.as_str())
+			.map_err(|_| anyhow::anyhow!("invalid server name"))?;
+		
+		// Connect
+		let connection = endpoint
+			.connect((host.clone(), port), server_name)?
+			.await
+			.context("failed to establish QUIC connection")?;
+		
+		// Create web-transport-quinn 0.5.0 session (compatible with moq-karp)
+		let session = web_transport_quinn::Session::connect(connection, url.clone())
+			.await
+			.context("failed to create web-transport session")?;
+		
+		// Bridge to moq-karp compatible session using moq-transfork
+		// Now that we're using the correct web-transport-quinn version, this should work
 		let session = moq_transfork::Session::connect(session)
 			.await
-			.context("Failed to bridge moq-native session to moq-karp - web-transport version mismatch")?;
+			.context("Failed to bridge session to moq-karp - this should work with web-transport-quinn 0.5.0")?;
 		let mut broadcast = moq_karp::BroadcastConsumer::new(session, path);
 
 		// TODO handle catalog updates
@@ -269,5 +283,63 @@ impl MoqSrc {
 
 	fn cleanup(&self) {
 		// TODO kill spawned tasks
+	}
+}
+
+/// Create a quinn ClientConfig with TLS settings
+fn create_quinn_client_config(disable_verify: bool) -> anyhow::Result<ClientConfig> {
+	// Load TLS config similar to moq-native
+	let tls_config = if disable_verify {
+		// Create a config that accepts any certificate (for development)
+		// Use empty root store and a verifier that accepts everything
+		let root_store = rustls::RootCertStore::empty();
+		let mut client_config = RustlsClientConfig::builder()
+			.with_root_certificates(root_store)
+			.with_no_client_auth();
+		
+		// Disable certificate verification by using a custom verifier
+		client_config
+			.dangerous()
+			.set_certificate_verifier(Arc::new(NoCertificateVerification));
+		
+		client_config
+	} else {
+		// Use system certificates
+		let mut root_store = rustls::RootCertStore::empty();
+		root_store.extend(rustls_native_certs::load_native_certs()?);
+		
+		RustlsClientConfig::builder()
+			.with_root_certificates(root_store)
+			.with_no_client_auth()
+	};
+	
+	// Set ALPN for web-transport
+	let mut tls_config = quinn::crypto::rustls::QuicClientConfig::try_from(tls_config)?;
+	tls_config.alpn_protocols = vec![web_transport_quinn::ALPN.as_bytes().to_vec()];
+	
+	// Create quinn client config
+	let mut client_config = ClientConfig::new(Arc::new(tls_config));
+	
+	// Configure transport
+	let mut transport = TransportConfig::default();
+	transport.max_idle_timeout(Some(Duration::from_secs(10).try_into().unwrap()));
+	client_config.transport_config(Arc::new(transport));
+	
+	Ok(client_config)
+}
+
+/// Certificate verifier that accepts all certificates (for development only)
+struct NoCertificateVerification;
+
+impl rustls::client::danger::ServerCertVerifier for NoCertificateVerification {
+	fn verify_server_cert(
+		&self,
+		_end_entity: &rustls::pki_types::CertificateDer<'_>,
+		_intermediates: &[rustls::pki_types::CertificateDer<'_>],
+		_server_name: &rustls::pki_types::ServerName<'_>,
+		_ocsp_response: &[u8],
+		_now: rustls::pki_types::UnixTime,
+	) -> Result<rustls::client::danger::ServerCertVerified, rustls::Error> {
+		Ok(rustls::client::danger::ServerCertVerified::assertion())
 	}
 }

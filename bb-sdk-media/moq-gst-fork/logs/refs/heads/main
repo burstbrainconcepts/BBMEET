@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 d0174048f95822eef04cf85dc2fdab2ea7b673c5 Ephraimraxy <124668425+Ephraimraxy@users.noreply.github.com> 1769199660 +0100	clone: from https://github.com/waterbustech/moq-gst.git
+d0174048f95822eef04cf85dc2fdab2ea7b673c5 9f0a81cf4e66950ca316eccfc81db2be1bea2775 Ephraimraxy <124668425+Ephraimraxy@users.noreply.github.com> 1769199944 +0100	commit: Initial fork with dependency fixes
+9f0a81cf4e66950ca316eccfc81db2be1bea2775 bc878b852c920bc7e3b03a446e72e4c8718254b1 Ephraimraxy <124668425+Ephraimraxy@users.noreply.github.com> 1769200044 +0100	commit: Fix moq-native/moq-karp web-transport type incompatibility

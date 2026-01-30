@@ -1,0 +1,53 @@
+{
+    "family": "bbmeet-sfu-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::153402911459:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::153402911459:role/ecsTaskExecutionRole",
+    "cpu": "1024",
+    "memory": "3072",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "containerDefinitions": [
+        {
+            "name": "bbmeet-sfu-container",
+            "image": "153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-sfu:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 50051,
+                    "hostPort": 50051,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 49152,
+                    "hostPort": 49152,
+                    "protocol": "udp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "PORT_MIN_UDP",
+                    "value": "49152"
+                },
+                {
+                    "name": "PORT_MAX_UDP",
+                    "value": "65535"
+                },
+                {
+                    "name": "RUST_LOG",
+                    "value": "info"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/bbmeet-sfu",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs",
+                    "awslogs-create-group": "true"
+                }
+            }
+        }
+    ]
+}

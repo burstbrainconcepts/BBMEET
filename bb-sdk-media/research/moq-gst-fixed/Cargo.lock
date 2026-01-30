@@ -1311,7 +1311,7 @@ dependencies = [
 
 [[package]]
 name = "moq-gst"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "anyhow",
  "env_logger",
@@ -1322,8 +1322,13 @@ dependencies = [
  "moq-karp",
  "moq-native",
  "once_cell",
+ "quinn",
+ "rustls",
+ "rustls-native-certs 0.8.1",
+ "rustls-pemfile",
  "tokio",
  "url",
+ "web-transport-quinn",
 ]
 
 [[package]]

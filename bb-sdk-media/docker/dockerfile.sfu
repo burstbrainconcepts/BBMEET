@@ -22,15 +22,18 @@ RUN cargo build --release --bin sfu
 FROM debian:trixie-slim
 
 RUN apt-get update && apt-get install -y \
-    libssl-dev ca-certificates \
+    libssl-dev ca-certificates curl jq \
     libgstreamer1.0-0 gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly gstreamer1.0-libav && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /usr/src/app/target/release/sfu /usr/local/bin/sfu
+COPY docker/sfu_entrypoint.sh /usr/local/bin/sfu_entrypoint.sh
+RUN chmod +x /usr/local/bin/sfu_entrypoint.sh
 
 EXPOSE 49152-65535/udp
 EXPOSE 50051
 
+ENTRYPOINT ["/usr/local/bin/sfu_entrypoint.sh"]
 CMD ["/usr/local/bin/sfu"]

@@ -1,0 +1,75 @@
+{
+    "family": "bbmeet-signalling-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::153402911459:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::153402911459:role/ecsTaskExecutionRole",
+    "cpu": "1024",
+    "memory": "2048",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "containerDefinitions": [
+        {
+            "name": "bbmeet-signalling-container",
+            "image": "153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-signalling:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 5998,
+                    "hostPort": 5998,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 50052,
+                    "hostPort": 50052,
+                    "protocol": "tcp"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "DATABASE_URL",
+                    "valueFrom": "/bbmeet/production/api/DATABASE_URL"
+                },
+                {
+                    "name": "AUTH_JWT_SECRET",
+                    "valueFrom": "/bbmeet/production/api/AUTH_JWT_SECRET"
+                },
+                {
+                    "name": "AUTH_JWT_TOKEN_EXPIRES_IN",
+                    "valueFrom": "/bbmeet/production/api/AUTH_JWT_TOKEN_EXPIRES_IN"
+                },
+                {
+                    "name": "AUTH_REFRESH_SECRET",
+                    "valueFrom": "/bbmeet/production/api/AUTH_REFRESH_SECRET"
+                },
+                {
+                    "name": "AUTH_REFRESH_TOKEN_EXPIRES_IN",
+                    "valueFrom": "/bbmeet/production/api/AUTH_REFRESH_TOKEN_EXPIRES_IN"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "APP_PORT",
+                    "value": "5998"
+                },
+                {
+                    "name": "RUST_LOG",
+                    "value": "info"
+                },
+                {
+                    "name": "REDIS_URIS",
+                    "value": "redis://bb-sdk-redis.cwn4uam28ybs.us-east-1.rds.amazonaws.com:6379"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/bbmeet-signalling",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs",
+                    "awslogs-create-group": "true"
+                }
+            }
+        }
+    ]
+}

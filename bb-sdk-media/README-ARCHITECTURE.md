@@ -15,16 +15,21 @@ BBMEET follows a **professional workspace structure** with separated core and ex
 
 ### Egress Components (Experimental, Optional)
 - **`egress-manager`** - HLS/MoQ streaming features (behind feature flag)
+  - **Status:** ⏸️ **Currently DISABLED** - See `research/STATUS.md` for details
+  - **Reason:** `moq-gst` dependency conflict (research complete, fix pending)
 
 ## 🔧 Dependency Management
 
-### Fork Override
+### Fork Override (Currently Commented Out)
+
 ```toml
-[patch.crates-io]
-moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
+# [patch.crates-io]
+# moq-gst = { git = "https://github.com/burstbrainconcepts/moq-gst-fixed.git", branch = "main" }
 ```
 
-**Why:** The upstream `moq-gst` has dependency conflicts between `moq-native` and `moq-karp` using incompatible `web-transport` versions. Our fork resolves these conflicts.
+**Status:** Fork exists but fix **not yet implemented**. See `research/STATUS.md` for current status and plan.
+
+**Why:** The upstream `moq-gst` has dependency conflicts between `moq-native` and `moq-karp` using incompatible `web-transport` versions. Our fork will resolve these conflicts once the fix is implemented.
 
 ### Feature Flags
 ```toml
@@ -99,6 +104,11 @@ cargo tree              # Verify dependency unification
 - **Logs:** `~/signalling.log`, `~/sfu.log`, `~/egress.log`
 - **Health:** Process monitoring via `ps aux | grep -E "(signalling|sfu)"`
 
+### Egress Manager Status
+- **Research:** Complete - See `research/` folder for analysis
+- **Fix Status:** Pending implementation - See `research/STATUS.md`
+- **Current State:** Disabled in workspace, fork exists but not fixed yet
+
 ## 📊 Benefits
 
 ✅ **Core WebRTC always stable** - No external dependency issues  
@@ -115,3 +125,5 @@ cargo tree              # Verify dependency unification
 3. **Tagged releases** → Both builds → Production deployment
 
 This architecture ensures **reliability** for core video conferencing while enabling **innovation** in streaming features.
+
+

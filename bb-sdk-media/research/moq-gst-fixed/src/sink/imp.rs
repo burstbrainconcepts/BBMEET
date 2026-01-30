@@ -5,11 +5,14 @@ use gst::subclass::prelude::*;
 use gst_base::subclass::prelude::*;
 
 use moq_karp::moq_transfork;
-use moq_native::{quic, tls};
 use once_cell::sync::Lazy;
 use std::sync::Arc;
 use std::sync::Mutex;
 use url::Url;
+use quinn::{ClientConfig, Endpoint, TransportConfig};
+use rustls::pki_types::ServerName;
+use rustls::ClientConfig as RustlsClientConfig;
+use std::time::Duration;
 
 pub static RUNTIME: Lazy<tokio::runtime::Runtime> = Lazy::new(|| {
 	tokio::runtime::Builder::new_multi_thread()
@@ -148,46 +151,109 @@ impl MoqSink {
 		let settings = self.settings.lock().unwrap();
 		let url = settings.url.clone().context("missing url")?;
 		let url = Url::parse(&url).context("invalid URL")?;
-
-		// TODO support TLS certs and other options
-		let config = quic::Args {
-			bind: "[::]:0".parse().unwrap(),
-			tls: tls::Args {
-				disable_verify: settings.tls_disable_verify,
-				..Default::default()
-			},
-		}
-		.load()?;
-		let client = quic::Endpoint::new(config)?.client;
+		let tls_disable_verify = settings.tls_disable_verify;
 
 		RUNTIME.block_on(async move {
-			// FIXED VERSION: Use moq-karp's own connection mechanism
-			// Instead of using moq-native's client and trying to bridge, we'll use moq-karp directly
-			// This requires moq-karp to have its own QUIC client API
+			// FIXED: Create QUIC connection directly using quinn, then create web-transport-quinn 0.5.0 session
+			// This bypasses moq-native's session creation and uses the version that moq-karp expects
 			
-			// For now, we'll keep the original approach but with better error handling
-			// The real fix requires either:
-			// 1. moq-karp to have its own QUIC client (preferred)
-			// 2. Proper connection extraction API from moq-native
-			// 3. Compatible web-transport versions
+			// Create quinn endpoint
+			let client_config = create_quinn_client_config(tls_disable_verify)?;
+			let endpoint = Endpoint::client("[::]:0".parse().unwrap())?;
+			endpoint.set_default_client_config(client_config);
 			
-			let native_session = client.connect(url.clone()).await.expect("failed to connect");
+			// Resolve DNS
+			let host = url.host_str().context("missing hostname")?.to_string();
+			let port = url.port().unwrap_or(443);
+			let server_name = ServerName::try_from(host.as_str())
+				.map_err(|_| anyhow::anyhow!("invalid server name"))?;
 			
-			// Attempt to bridge the session - this is where the type mismatch occurs
-			// The moq_transfork bridge should handle the conversion, but it's failing due to
-			// incompatible web-transport versions between moq-native and moq-karp
-			let session = moq_transfork::Session::connect(native_session)
+			// Connect
+			let connection = endpoint
+				.connect((host.clone(), port), server_name)?
 				.await
-				.expect("failed to bridge session - this indicates a web-transport version mismatch that needs to be resolved at the dependency level");
+				.context("failed to establish QUIC connection")?;
+			
+			// Create web-transport-quinn 0.5.0 session (compatible with moq-karp)
+			let session = web_transport_quinn::Session::connect(connection, url.clone())
+				.await
+				.context("failed to create web-transport session")?;
+			
+			// Bridge to moq-karp compatible session using moq-transfork
+			// Now that we're using the correct web-transport-quinn version, this should work
+			let karp_session = moq_transfork::Session::connect(session)
+				.await
+				.context("failed to bridge session to moq-karp - this should work with web-transport-quinn 0.5.0")?;
 
 			let path = url.path().strip_prefix('/').unwrap().to_string();
-			let broadcast = moq_karp::BroadcastProducer::new(session, path).unwrap();
+			let broadcast = moq_karp::BroadcastProducer::new(karp_session, path)
+				.context("failed to create broadcast producer")?;
 			let media = moq_karp::cmaf::Import::new(broadcast);
 
 			let mut state = self.state.lock().unwrap();
 			state.media = Some(media);
-		});
+			
+			Ok::<(), anyhow::Error>(())
+		})?;
 
 		Ok(())
+	}
+}
+
+/// Create a quinn ClientConfig with TLS settings
+fn create_quinn_client_config(disable_verify: bool) -> anyhow::Result<ClientConfig> {
+	// Load TLS config similar to moq-native
+	let tls_config = if disable_verify {
+		// Create a config that accepts any certificate (for development)
+		// Use empty root store and a verifier that accepts everything
+		let root_store = rustls::RootCertStore::empty();
+		let mut client_config = RustlsClientConfig::builder()
+			.with_root_certificates(root_store)
+			.with_no_client_auth();
+		
+		// Disable certificate verification by using a custom verifier
+		client_config
+			.dangerous()
+			.set_certificate_verifier(Arc::new(NoCertificateVerification));
+		
+		client_config
+	} else {
+		// Use system certificates
+		let mut root_store = rustls::RootCertStore::empty();
+		root_store.extend(rustls_native_certs::load_native_certs()?);
+		
+		RustlsClientConfig::builder()
+			.with_root_certificates(root_store)
+			.with_no_client_auth()
+	};
+	
+	// Set ALPN for web-transport
+	let mut tls_config = quinn::crypto::rustls::QuicClientConfig::try_from(tls_config)?;
+	tls_config.alpn_protocols = vec![web_transport_quinn::ALPN.as_bytes().to_vec()];
+	
+	// Create quinn client config
+	let mut client_config = ClientConfig::new(Arc::new(tls_config));
+	
+	// Configure transport
+	let mut transport = TransportConfig::default();
+	transport.max_idle_timeout(Some(Duration::from_secs(10).try_into().unwrap()));
+	client_config.transport_config(Arc::new(transport));
+	
+	Ok(client_config)
+}
+
+/// Certificate verifier that accepts all certificates (for development only)
+struct NoCertificateVerification;
+
+impl rustls::client::danger::ServerCertVerifier for NoCertificateVerification {
+	fn verify_server_cert(
+		&self,
+		_end_entity: &rustls::pki_types::CertificateDer<'_>,
+		_intermediates: &[rustls::pki_types::CertificateDer<'_>],
+		_server_name: &rustls::pki_types::ServerName<'_>,
+		_ocsp_response: &[u8],
+		_now: rustls::pki_types::UnixTime,
+	) -> Result<rustls::client::danger::ServerCertVerified, rustls::Error> {
+		Ok(rustls::client::danger::ServerCertVerified::assertion())
 	}
 }

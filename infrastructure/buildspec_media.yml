@@ -1,0 +1,47 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install dependencies (if needed, though we use multistage builds)
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 153402911459.dkr.ecr.us-east-1.amazonaws.com
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - REPO_URI=153402911459.dkr.ecr.us-east-1.amazonaws.com
+      # Check and create repositories if they don't exist
+      - aws ecr describe-repositories --repository-names bbmeet-sfu || aws ecr create-repository --repository-name bbmeet-sfu
+      - aws ecr describe-repositories --repository-names bbmeet-signalling || aws ecr create-repository --repository-name bbmeet-signalling
+      
+  build:
+    commands:
+      # Build SFU
+      - echo Building SFU Image...
+      - cd bb-sdk-media
+      # Generate certificates if missing (Rust build needs them even if unused in prod)
+      - mkdir -p certificates
+      - if [ ! -f certificates/cert.pem ]; then openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout certificates/key.pem -out certificates/cert.pem -days 365 -nodes -subj "/CN=localhost"; fi
+      
+      - docker build -t $REPO_URI/bbmeet-sfu:latest -f docker/dockerfile.sfu .
+      - docker tag $REPO_URI/bbmeet-sfu:latest $REPO_URI/bbmeet-sfu:$IMAGE_TAG
+      
+      # Build Signalling
+      - echo Building Signalling Image...
+      - docker build -t $REPO_URI/bbmeet-signalling:latest -f docker/dockerfile.signalling .
+      - docker tag $REPO_URI/bbmeet-signalling:latest $REPO_URI/bbmeet-signalling:$IMAGE_TAG
+      
+  post_build:
+    commands:
+      - echo Pushing images to ECR...
+      - docker push $REPO_URI/bbmeet-sfu:latest
+      - docker push $REPO_URI/bbmeet-sfu:$IMAGE_TAG
+      - docker push $REPO_URI/bbmeet-signalling:latest
+      - docker push $REPO_URI/bbmeet-signalling:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"sfu","imageUri":"%s"},{"name":"signalling","imageUri":"%s"}]' "$REPO_URI/bbmeet-sfu:$IMAGE_TAG" "$REPO_URI/bbmeet-signalling:$IMAGE_TAG" > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

@@ -7,19 +7,25 @@ license = "MIT OR Apache-2.0"
 
 version = "0.1.8"
 edition = "2021"
-
 keywords = ["quic", "http3", "webtransport", "media", "live"]
 categories = ["multimedia", "network-programming", "web-programming"]
+
+# Standalone package, not part of parent workspace
+[workspace]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 moq-native = "0.6"
 moq-karp = "0.14"
-# Force compatible web-transport-quinn version
-# This is a workaround for the type incompatibility issue
-web-transport-quinn = "0.4"
-web-transport-quinn = "0.4"
+# Use web-transport-quinn 0.5.0 to match moq-karp's web-transport 0.8.0 dependency
+# This is the version that moq-karp expects (via web-transport 0.8.0)
+web-transport-quinn = "0.5"
+# Direct dependencies for QUIC connection creation
+quinn = "0.11"
+rustls = { version = "0.23", default-features = false, features = ["ring"] }
+rustls-pemfile = "2.0"
+rustls-native-certs = "0.8"
 
 gst = { package = "gstreamer", version = "0.23" }
 gst-base = { package = "gstreamer-base", version = "0.23" }

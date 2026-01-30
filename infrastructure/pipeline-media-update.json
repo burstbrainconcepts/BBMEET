@@ -1,0 +1,146 @@
+{
+    "pipeline": {
+        "name": "bbmeet-media-pipeline",
+        "roleArn": "arn:aws:iam::153402911459:role/service-role/AWSCodePipelineServiceRole-us-east-1-bbmeet-media-pipeline",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-east-1-d1e9ef07db46-44b5-bed3-8831c879a9a9"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "CodeStarSourceConnection",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BranchName": "main",
+                            "ConnectionArn": "arn:aws:codeconnections:us-east-1:153402911459:connection/78314a2d-e3e4-4216-9e54-849cfb9f6f79",
+                            "DetectChanges": "true",
+                            "FullRepositoryId": "burstbrainconcepts/BBMEET",
+                            "OutputArtifactFormat": "CODE_ZIP"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-east-1",
+                        "namespace": "SourceVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Build",
+                "actions": [
+                    {
+                        "name": "Build",
+                        "actionTypeId": {
+                            "category": "Build",
+                            "owner": "AWS",
+                            "provider": "CodeBuild",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ProjectName": "bbmeet-media-build"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "region": "us-east-1",
+                        "namespace": "BuildVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "DeploySFU",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "ECS",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ClusterName": "bbmeet-cluster",
+                            "ServiceName": "bbmeet-sfu-service",
+                            "FileName": "imagedefinitions.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "region": "us-east-1"
+                    },
+                    {
+                        "name": "DeploySignalling",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "ECS",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ClusterName": "bbmeet-cluster",
+                            "ServiceName": "bbmeet-signalling-service",
+                            "FileName": "imagedefinitions.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "region": "us-east-1"
+                    }
+                ]
+            }
+        ],
+        "version": 4,
+        "executionMode": "SUPERSEDED",
+        "pipelineType": "V2",
+        "triggers": [
+            {
+                "providerType": "CodeStarSourceConnection",
+                "gitConfiguration": {
+                    "sourceActionName": "Source",
+                    "push": [
+                        {
+                            "branches": {
+                                "includes": [
+                                    "main"
+                                ]
+                            },
+                            "filePaths": {
+                                "includes": [
+                                    "bb-sdk-media/**"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
