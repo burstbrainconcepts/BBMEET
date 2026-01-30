@@ -1,5 +1,5 @@
 # --- Build stage ---
-FROM public.ecr.aws/docker/library/rust:nightly AS builder
+FROM docker.io/rustlang/rust:nightly AS builder
 
 RUN apt-get update && apt-get install -y \
     pkg-config libssl-dev cmake clang protobuf-compiler \
