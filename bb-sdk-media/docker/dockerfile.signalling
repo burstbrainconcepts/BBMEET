@@ -1,10 +1,10 @@
 # --- Build stage ---
 FROM public.ecr.aws/docker/library/debian:bookworm AS builder
 
-# Install build dependencies and Rustup
+# Install build dependencies and Rustup (no default toolchain, will be determined by rust-toolchain.toml)
 RUN apt-get update && apt-get install -y \
     curl build-essential pkg-config libssl-dev cmake clang protobuf-compiler git \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
@@ -12,6 +12,8 @@ WORKDIR /usr/src/app
 
 RUN mkdir -p /usr/src/app/hls
 
+# Copy rust-toolchain.toml first to install the pinned nightly version
+COPY rust-toolchain.toml ./rust-toolchain.toml
 COPY public ./public
 COPY docker/Cargo.toml.signalling ./Cargo.toml
 
