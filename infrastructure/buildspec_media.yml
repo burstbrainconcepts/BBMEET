@@ -15,8 +15,8 @@ phases:
       - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 153402911459.dkr.ecr.us-east-1.amazonaws.com
-      - echo "Attempting explicit pull of rust:bookworm..."
-      - docker pull rust:bookworm
+      - echo "Attempting explicit pull of rust:nightly-bookworm..."
+      - docker pull rust:nightly-bookworm
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - REPO_URI=153402911459.dkr.ecr.us-east-1.amazonaws.com
