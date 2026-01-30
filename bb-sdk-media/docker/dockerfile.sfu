@@ -4,13 +4,13 @@ FROM docker.io/library/debian:bookworm AS builder
 # Install build dependencies and Rustup
 RUN apt-get update && apt-get install -y \
     curl build-essential pkg-config libssl-dev cmake clang protobuf-compiler git \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
-
-ENV PATH="/root/.cargo/bin:${PATH}"
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
     libgstreamer-plugins-bad1.0-dev gstreamer1.0-libav \
     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-ugly
+    gstreamer1.0-plugins-ugly \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /usr/src/app
 COPY docker/Cargo.toml.sfu ./Cargo.toml
