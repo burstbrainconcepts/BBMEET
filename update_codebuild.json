@@ -1,0 +1,14 @@
+{
+    "name": "bbmeet-media-build",
+    "source": {
+        "type": "GITHUB",
+        "location": "https://github.com/burstbrainconcepts/BBMEET",
+        "gitCloneDepth": 1,
+        "gitSubmodulesConfig": {
+            "fetchSubmodules": false
+        },
+        "buildspec": "infrastructure/buildspec_media.yml",
+        "reportBuildStatus": false,
+        "insecureSsl": false
+    }
+}

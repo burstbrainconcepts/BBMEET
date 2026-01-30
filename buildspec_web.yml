@@ -13,6 +13,21 @@ phases:
       - echo Getting dependencies...
       - flutter pub get
       - flutter pub run build_runner build --delete-conflicting-outputs
+      - echo Fetching configuration from SSM...
+      # Fetch parameters for the web environment
+      - aws ssm get-parameters-by-path --path "/bbmeet/production/web/" --recursive --with-decryption --region us-east-1 > ssm_params.json
+      # Parse JSON and write to .env (requires jq)
+      - yum install -y jq
+      - echo "# Generated .env" > .env
+      - |
+        jq -r '.Parameters[] | .Name + "=" + .Value' ssm_params.json | while read line; do
+          # Extract key name from full path (e.g. /bbmeet/production/web/COGNITO_POOL_ID -> COGNITO_POOL_ID)
+          KEY=$(echo $line | cut -d'=' -f1 | awk -F'/' '{print $NF}')
+          VALUE=$(echo $line | cut -d'=' -f2-)
+          echo "$KEY=$VALUE" >> .env
+        done
+      - echo "API_URL=https://api.bbmeet.site" >> .env # Explicit override or fetch if separate
+      - cat .env # For debugging (careful with secrets)
   build:
     commands:
       - echo Building Web App...

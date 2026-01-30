@@ -3,9 +3,6 @@ name: Deploy Media Server
 on:
   push:
     branches: [ main ]
-    paths:
-      - "bb-sdk-media/**"
-      - ".github/workflows/media-deploy.yml"
   workflow_dispatch:
 
 env:
@@ -19,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Install System Dependencies
       run: |
@@ -33,14 +30,14 @@ jobs:
         override: true
 
     - name: Build Release Binaries
-      working-directory: bb-sdk-media
       run: cargo build --release
 
     - name: Prepare Deployment Artifacts
       run: |
         mkdir -p deploy
-        cp bb-sdk-media/target/release/signalling deploy/
-        cp bb-sdk-media/target/release/sfu deploy/
+        cp target/release/signalling deploy/
+        cp target/release/sfu deploy/
+        cp -r .env deploy/ || true
         # Note: We don't overwrite .env if it exists on server, but for initial sync we might need it.
         # Ideally, .env is managed manually on server or via secrets. 
 
@@ -50,9 +47,9 @@ jobs:
         host: ${{ env.EC2_HOST }}
         username: ${{ env.EC2_USER }}
         key: ${{ env.EC2_KEY }}
-        source: "deploy/signalling,deploy/sfu"
+        source: "target/release/signalling,target/release/sfu"        
         target: "/home/ec2-user/bb-sdk-media/"
-        strip_components: 1
+        strip_components: 2
 
     - name: Restart Services
       uses: appleboy/ssh-action@master

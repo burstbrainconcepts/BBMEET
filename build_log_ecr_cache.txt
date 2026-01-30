@@ -1,0 +1,781 @@
+﻿{
+    "events": [
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:30.394355 Running on CodeBuild On-demand\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:30.394367 Waiting for agent ping\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:30.796663 Waiting for DOWNLOAD_SOURCE\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:35.718583 Phase is DOWNLOAD_SOURCE\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:35.767997 CODEBUILD_SRC_DIR=/codebuild/output/src1005703487/src\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:35.768651 YAML location is /codebuild/output/src1005703487/src/infrastructure/buildspec_media.yml\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:35.770755 Setting HTTP client timeout to higher timeout for S3 source\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:35.770848 Processing environment variables\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.223926 No runtime version selected in buildspec.\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.252747 Moving to directory /codebuild/output/src1005703487/src\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.252786 Cache is not defined in the buildspec\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.430055 Skip cache due to: no paths specified to be cached\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.430368 Registering with agent\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597102 Phases found in YAML: 4\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597128  BUILD: 9 commands\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597135  POST_BUILD: 7 commands\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597139  INSTALL: 1 commands\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597148  PRE_BUILD: 7 commands\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597497 Phase complete: DOWNLOAD_SOURCE State: SUCCEEDED\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.597512 Phase context status code:  Message: \n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:36.967815 Entering phase INSTALL\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.136174 Running command \n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.320122 Phase complete: INSTALL State: SUCCEEDED\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.320145 Phase context status code:  Message: \n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.353131 Entering phase PRE_BUILD\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.354169 Running command echo Logging in to Amazon ECR...\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "Logging in to Amazon ECR...\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758599943,
+            "message": "[Container] 2026/01/30 07:36:37.362492 Running command aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 153402911459.dkr.ecr.us-east-1.amazonaws.com\n",
+            "ingestionTime": 1769758599963
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "WARNING! Your password will be stored unencrypted in /root/.docker/config.json.\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "Configure a credential helper to remove this warning. See\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "https://docs.docker.com/engine/reference/commandline/login/#credential-stores\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "Login Succeeded\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:48.108028 Running command COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:48.161055 Running command IMAGE_TAG=${COMMIT_HASH:=latest}\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:48.169123 Running command REPO_URI=153402911459.dkr.ecr.us-east-1.amazonaws.com\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:48.176909 Running command aws ecr describe-repositories --repository-names bbmeet-sfu || aws ecr create-repository --repository-name bbmeet-sfu\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "{\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "    \"repositories\": [\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "        {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryArn\": \"arn:aws:ecr:us-east-1:153402911459:repository/bbmeet-sfu\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"registryId\": \"153402911459\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryName\": \"bbmeet-sfu\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryUri\": \"153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-sfu\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"createdAt\": \"2026-01-30T05:05:04.881000+00:00\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"imageTagMutability\": \"MUTABLE\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"imageScanningConfiguration\": {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "                \"scanOnPush\": false\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            },\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"encryptionConfiguration\": {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "                \"encryptionType\": \"AES256\"\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            }\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "        }\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "    ]\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "}\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:48.990165 Running command aws ecr describe-repositories --repository-names bbmeet-signalling || aws ecr create-repository --repository-name bbmeet-signalling\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "{\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "    \"repositories\": [\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "        {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryArn\": \"arn:aws:ecr:us-east-1:153402911459:repository/bbmeet-signalling\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"registryId\": \"153402911459\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryName\": \"bbmeet-signalling\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"repositoryUri\": \"153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-signalling\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"createdAt\": \"2026-01-30T05:05:12.604000+00:00\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"imageTagMutability\": \"MUTABLE\",\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"imageScanningConfiguration\": {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "                \"scanOnPush\": false\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            },\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            \"encryptionConfiguration\": {\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "                \"encryptionType\": \"AES256\"\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "            }\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "        }\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "    ]\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "}\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.807748 Phase complete: PRE_BUILD State: SUCCEEDED\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.807767 Phase context status code:  Message: \n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.845670 Entering phase BUILD\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.846748 Running command echo Building SFU Image...\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "Building SFU Image...\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.854898 Running command cd bb-sdk-media\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.862744 Running command mkdir -p certificates\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758609989,
+            "message": "[Container] 2026/01/30 07:36:49.871662 Running command if [ ! -f certificates/cert.pem ]; then openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout certificates/key.pem -out certificates/cert.pem -days 365 -nodes -subj \"/CN=localhost\"; fi\n",
+            "ingestionTime": 1769758610009
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "-----\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.300691 Running command docker build -t $REPO_URI/bbmeet-sfu:latest -f docker/dockerfile.sfu .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#0 building with \"default\" instance using docker driver\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#1 [internal] load build definition from dockerfile.sfu\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#1 transferring dockerfile: 1.39kB done\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#1 DONE 0.0s\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#2 [auth] sharing credentials for 153402911459.dkr.ecr.us-east-1.amazonaws.com\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#2 DONE 0.0s\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#3 [internal] load metadata for 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#3 ERROR: 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly: not found\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#4 [internal] load metadata for public.ecr.aws/docker/library/debian:bookworm-slim\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "#4 CANCELED\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "------\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": " > [internal] load metadata for 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly:\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "------\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "dockerfile.sfu:2\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "--------------------\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "   1 |     # --- Build stage ---\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "   2 | >>> FROM 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly AS builder\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "   3 |     \n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "   4 |     RUN apt-get update && apt-get install -y \\\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "--------------------\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "ERROR: failed to solve: 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly: 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly: not found\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.711717 Command did not exit successfully docker build -t $REPO_URI/bbmeet-sfu:latest -f docker/dockerfile.sfu . exit status 1\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.718298 Phase complete: BUILD State: FAILED\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.718315 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: docker build -t $REPO_URI/bbmeet-sfu:latest -f docker/dockerfile.sfu .. Reason: exit status 1\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.753402 Entering phase POST_BUILD\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.754469 Running command echo Pushing images to ECR...\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "Pushing images to ECR...\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.762370 Running command docker push $REPO_URI/bbmeet-sfu:latest\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "The push refers to repository [153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-sfu]\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "An image does not exist locally with the tag: 153402911459.dkr.ecr.us-east-1.amazonaws.com/bbmeet-sfu\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.782928 Command did not exit successfully docker push $REPO_URI/bbmeet-sfu:latest exit status 1\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.788933 Phase complete: POST_BUILD State: FAILED\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:50.788950 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: docker push $REPO_URI/bbmeet-sfu:latest. Reason: exit status 1\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.016357 Expanding base directory path: .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.020329 Assembling file list\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.020346 Expanding .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.024000 Expanding file paths for base directory .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.024015 Assembling file list\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.024019 Expanding imagedefinitions.json\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.027538 Skipping invalid file path imagedefinitions.json\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.027997 Set report auto-discover timeout to 5 seconds\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.028044 Expanding base directory path:  .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.031562 Assembling file list\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.031578 Expanding .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.035049 Expanding file paths for base directory .\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.035061 Assembling file list\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.035064 Expanding **/*\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.079442 Found 25 file(s)\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.079478 Report auto-discover file discovery took 0.051481 seconds\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.081770 Phase complete: UPLOAD_ARTIFACTS State: FAILED\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612026,
+            "message": "[Container] 2026/01/30 07:36:51.081794 Phase context status code: CLIENT_ERROR Message: no matching artifact paths found\n",
+            "ingestionTime": 1769758612029
+        },
+        {
+            "timestamp": 1769758612740,
+            "message": "no matching artifact paths found",
+            "ingestionTime": 1769758612742
+        }
+    ],
+    "nextForwardToken": "f/39466935885619771499511500324791068656658342709688074240/s",
+    "nextBackwardToken": "b/39466935600237135193915115967109828914577439036984524800/s"
+}

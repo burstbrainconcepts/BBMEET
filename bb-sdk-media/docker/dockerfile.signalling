@@ -1,5 +1,5 @@
 # --- Build stage ---
-FROM 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly AS builder
+FROM 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/library/rust:nightly AS builder
 
 WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \

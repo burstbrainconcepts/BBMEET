@@ -16,7 +16,7 @@ phases:
       - aws ecr describe-repositories --repository-names bbmeet-signalling || aws ecr create-repository --repository-name bbmeet-signalling
       # Prime ECR pull-through cache - explicit pull triggers cached repo creation
       - echo Pulling base images via ECR pull-through cache...
-      - docker pull 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/rustlang/rust:nightly
+      - docker pull 153402911459.dkr.ecr.us-east-1.amazonaws.com/docker-hub/library/rust:nightly
       - docker pull public.ecr.aws/docker/library/debian:bookworm-slim
       
   build:
