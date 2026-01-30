@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /usr/src/app
 COPY docker/Cargo.toml.sfu ./Cargo.toml
-COPY Cargo.lock ./
+
 COPY crates/webrtc-manager ./crates/webrtc-manager
 COPY crates/egress-manager ./crates/egress-manager
 COPY crates/waterbus-proto ./crates/waterbus-proto

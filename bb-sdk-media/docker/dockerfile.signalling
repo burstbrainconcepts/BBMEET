@@ -9,7 +9,7 @@ RUN mkdir -p /usr/src/app/hls
 
 COPY public ./public
 COPY docker/Cargo.toml.signalling ./Cargo.toml
-COPY Cargo.lock ./
+
 COPY signalling ./signalling
 COPY crates/waterbus-proto ./crates/waterbus-proto
 COPY crates/dispatcher ./crates/dispatcher
