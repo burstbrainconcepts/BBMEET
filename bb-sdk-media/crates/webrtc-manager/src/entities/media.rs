@@ -153,7 +153,7 @@ impl Media {
         }
 
         if rtp_track.kind() == RTPCodecType::Video {
-            let codec = match rtp_track
+            let _codec = match rtp_track
                 .codec()
                 .capability
                 .mime_type
@@ -169,12 +169,12 @@ impl Media {
 
             #[cfg(feature = "egress")]
             if let Some(hls_writer) = &self.hls_writer {
-                hls_writer.set_video_codec(codec);
+                hls_writer.set_video_codec(_codec);
             }
 
             #[cfg(feature = "egress")]
             if let Some(moq_writer) = &self.moq_writer {
-                moq_writer.set_video_codec(codec);
+                moq_writer.set_video_codec(_codec);
             }
         }
 

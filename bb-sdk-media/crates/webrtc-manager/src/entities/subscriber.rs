@@ -232,7 +232,7 @@ impl Subscriber {
                             Box::pin(async move {
                                 let data = msg.data;
 
-                                let parsed = str::from_utf8(&data)
+                                let parsed = std::str::from_utf8(&data)
                                     .map_err(|e| format!("Invalid UTF-8: {e}"))
                                     .and_then(|json_str| {
                                         serde_json::from_str::<TrackQualityRequest>(json_str)

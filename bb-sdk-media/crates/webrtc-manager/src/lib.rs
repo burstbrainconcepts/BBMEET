@@ -1,3 +1,5 @@
+#![feature(let_chains)]
+
 pub mod entities;
 pub mod errors;
 pub mod models;
