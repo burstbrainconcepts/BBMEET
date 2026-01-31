@@ -47,14 +47,14 @@ impl CacheManager {
         let _: () = conn.set(key.clone().key, serialized_value)?;
 
         let secondary_key = format!("participant_id:{}", value.participant_id);
-        let _: () = conn.set(secondary_key, &key.key)?;
+        let _: () = conn.set(&secondary_key, key.key.as_str())?;
 
         Ok(())
     }
 
     pub fn get(&self, key: &CacheKey) -> Result<Option<ClientMetadata>, redis::RedisError> {
         let mut conn = self.client.lock().unwrap().get_connection()?;
-        let result: Option<String> = conn.get(&key.key)?;
+        let result: Option<String> = conn.get(key.key.as_str())?;
         match result {
             Some(s) => {
                 let metadata: ClientMetadata = serde_json::from_str(&s).map_err(|e| {
@@ -90,14 +90,14 @@ impl CacheManager {
             let _: () = conn.del(format!("participant_id:{}", meta.participant_id))?;
         }
 
-        conn.del::<_, ()>(&key.key)?;
+        conn.del::<_, ()>(key.key.as_str())?;
 
         Ok(())
     }
 
     pub fn contains_key(&self, key: &CacheKey) -> Result<bool, redis::RedisError> {
         let mut conn = self.client.lock().unwrap().get_connection()?;
-        let exists: i64 = conn.exists(&key.key)?;
+        let exists: i64 = conn.exists(key.key.as_str())?;
         Ok(exists == 1)
     }
 }

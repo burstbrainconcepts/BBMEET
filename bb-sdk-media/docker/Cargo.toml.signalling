@@ -98,7 +98,7 @@ tonic = "0.13.1"
 etcd-client = "0.15.0"
 sysinfo = "0.35.1"
 futures-util = "0.3.31"
-redis = "0.31.0"
+redis = { version = "0.31.0", features = ["cluster"] }
 
 # Local crates
 waterbus-proto = { path = "./crates/waterbus-proto" }
