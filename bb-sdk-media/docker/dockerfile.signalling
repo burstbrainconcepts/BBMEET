@@ -1,10 +1,15 @@
 # --- Build stage ---
 FROM public.ecr.aws/docker/library/debian:bookworm AS builder
 
-# Install build dependencies and Rustup (no default toolchain, will be determined by rust-toolchain.toml)
-RUN apt-get update && apt-get install -y \
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y -qq \
     curl build-essential pkg-config libssl-dev cmake clang protobuf-compiler git \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Rustup (using rust-toolchain.toml later)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
