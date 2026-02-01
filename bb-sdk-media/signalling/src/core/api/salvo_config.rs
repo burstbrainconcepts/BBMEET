@@ -128,7 +128,6 @@ pub async fn get_salvo_service(env: &AppEnv) -> Service {
         .get(static_embed::<PublicAssets>().fallback("index.html"));
 
     let router = Router::new()
-        .push(health_router)  // Health check at root level, no auth required
         .push(router)
         .push(socket_router)
         .push(static_router)
@@ -163,6 +162,7 @@ pub async fn get_salvo_service(env: &AppEnv) -> Service {
         .merge_router(&router);
 
     let router = Router::new()
+        .push(health_router)  // Health check at absolute root, no auth required
         .push(doc.into_router("/api-doc/openapi.json"))
         .push(SwaggerUi::new("/api-doc/openapi.json").into_router("docs"))
         .push(router);
