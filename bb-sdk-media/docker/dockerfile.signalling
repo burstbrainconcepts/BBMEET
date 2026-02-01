@@ -6,6 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install build dependencies
 RUN apt-get update && apt-get install -y -qq \
     curl build-essential pkg-config libssl-dev cmake clang protobuf-compiler git \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Rustup (using rust-toolchain.toml later)
