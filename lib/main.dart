@@ -36,7 +36,7 @@ void main(List<String> args) async {
 
       final List<Future> futures = [
         ImageUtils().init(),
-        WaterbusSdk().initializeApp(
+        WaterbusSdk().initialize(
           config: SdkConfig(
             serverConfig: ServerConfig(
               url: Endpoints.mediaUrl,  // Use media server for WebRTC signalling
