@@ -36,9 +36,10 @@ void main(List<String> args) async {
 
       final List<Future> futures = [
         ImageUtils().init(),
+        WaterbusSdk().initializeApp(
           config: SdkConfig(
             serverConfig: ServerConfig(
-              url: Endpoints.baseUrl,
+              url: Endpoints.mediaUrl,  // Use media server for WebRTC signalling
               suffixUrl: Endpoints.suffixUrl,
               apiKey: 'bbmeet-general-api-key',
             ),
