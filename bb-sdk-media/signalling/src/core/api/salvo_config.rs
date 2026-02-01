@@ -42,6 +42,7 @@ struct PublicAssets;
 
 #[handler(tags("system"))]
 async fn health_check(res: &mut Response) {
+    res.status_code(StatusCode::OK);
     res.render("[v3] Waterbus Service written in Rust");
 }
 
@@ -119,8 +120,7 @@ pub async fn get_salvo_service(env: &AppEnv) -> Service {
         .push(auth_router)
         .push(chat_router)
         .push(user_router)
-        .push(room_router)
-        .push(health_router);
+        .push(room_router);
 
     let static_hls_router =
         Router::with_path("{*path}").get(static_embed::<HlsAssets>().fallback("index.html"));
@@ -128,6 +128,7 @@ pub async fn get_salvo_service(env: &AppEnv) -> Service {
         .get(static_embed::<PublicAssets>().fallback("index.html"));
 
     let router = Router::new()
+        .push(health_router)  // Health check at root level, no auth required
         .push(router)
         .push(socket_router)
         .push(static_router)
