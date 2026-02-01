@@ -37,6 +37,10 @@
                 {
                     "name": "RUST_LOG",
                     "value": "info"
+                },
+                {
+                    "name": "ETCD_URI",
+                    "value": "http://etcd:2379"
                 }
             ],
             "logConfiguration": {

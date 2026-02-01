@@ -48,7 +48,10 @@ phases:
       - docker push $REPO_URI/bbmeet-signalling:$IMAGE_TAG
       - echo Writing image definitions file...
       - printf '[{"name":"sfu","imageUri":"%s"},{"name":"signalling","imageUri":"%s"}]' "$REPO_URI/bbmeet-sfu:$IMAGE_TAG" "$REPO_URI/bbmeet-signalling:$IMAGE_TAG" > imagedefinitions.json
+      - cp imagedefinitions.json ../imagedefinitions.json
+      - cd ..
 
 artifacts:
   files:
     - imagedefinitions.json
+    - bb-sdk-media/imagedefinitions.json
