@@ -40,7 +40,7 @@
                 },
                 {
                     "name": "ETCD_URI",
-                    "value": "http://10.0.1.248:2379"
+                    "value": "10.0.1.248:2379"
                 }
             ],
             "logConfiguration": {
