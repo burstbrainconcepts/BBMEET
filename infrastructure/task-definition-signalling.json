@@ -59,6 +59,10 @@
                 {
                     "name": "REDIS_URIS",
                     "value": "redis://bb-sdk-redis.cwn4uam28ybs.us-east-1.rds.amazonaws.com:6379"
+                },
+                {
+                    "name": "ETCD_URI",
+                    "value": "http://etcd:2379"
                 }
             ],
             "logConfiguration": {
