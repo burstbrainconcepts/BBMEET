@@ -29,9 +29,27 @@ async function bootstrap() {
     }),
   );
 
-
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(EnvironmentConfigService);
+
+  // Enable CORS for web frontend (bbmeet.site / www.bbmeet.site)
+  // This allows the web app on CloudFront to call https://api.bbmeet.site
+  app.enableCors({
+    origin: [
+      'https://www.bbmeet.site',
+      'https://bbmeet.site',
+    ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'api-key',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+    ],
+    credentials: true,
+  });
 
   app.enableShutdownHooks();
   app.setGlobalPrefix(configService.getApiPrefix(), {
