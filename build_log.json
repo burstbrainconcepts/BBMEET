@@ -1,0 +1,395 @@
+{
+    "events": [
+        {
+            "timestamp": 1769839740865,
+            "message": "#9 97.54 invoke-rc.d: policy-rc.d denied execution of start.\r\n",
+            "ingestionTime": 1769839740868
+        },
+        {
+            "timestamp": 1769839740865,
+            "message": "#9 97.54 Setting up libgcc-12-dev:amd64 (12.2.0-14+deb12u1) ...\r\n",
+            "ingestionTime": 1769839740868
+        },
+        {
+            "timestamp": 1769839740865,
+            "message": "#9 97.56 Setting up shared-mime-info (2.2-1) ...\r\n",
+            "ingestionTime": 1769839740868
+        },
+        {
+            "timestamp": 1769839740865,
+            "message": "#9 99.44 Setting up libxkbcommon-x11-0:amd64 (1.5.0-1) ...\r\n",
+            "ingestionTime": 1769839740868
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.46 Setting up libdc1394-25:amd64 (2.2.6-4) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.47 Setting up libgssapi-krb5-2:amd64 (1.20.1-2+deb12u4) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.48 Setting up pkg-config:amd64 (1.8.1-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.49 Setting up libgdbm-compat4:amd64 (1.23-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.50 Setting up libmpeg2encpp-2.1-0:amd64 (1:2.1.0+debian-7) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.51 Setting up ucf (3.0043+nmu1+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.60 Setting up gir1.2-glib-2.0:amd64 (1.74.0-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.62 Setting up libqt5core5a:amd64 (5.15.8+dfsg-11+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.63 Setting up libx265-199:amd64 (3.5-2+b1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.64 Setting up libsndio7.0:amd64 (1.9.0-0.3+b2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.65 Setting up libxcb-dri2-0:amd64 (1.15-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.67 Setting up libllvm14:amd64 (1:14.0.6-12) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.68 Setting up libobjc-12-dev:amd64 (12.2.0-14+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.69 Setting up libjack-jackd2-0:amd64 (1.9.21~dfsg-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.70 Setting up libdrm2:amd64 (2.4.114-1+b1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.71 Setting up libflite1:amd64 (2.2-5) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.72 Setting up libva-drm2:amd64 (2.17.0-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.74 Setting up libneon27:amd64 (0.32.5-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.75 Setting up libqt5dbus5:amd64 (5.15.8+dfsg-11+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.76 Setting up libsord-0-0:amd64 (0.16.14+git221008-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.77 Setting up libwayland-cursor0:amd64 (1.21.0-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.78 Setting up libxcb-randr0:amd64 (1.15-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.79 Setting up cpp (4:12.2.0-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.81 Setting up libsratom-0-0:amd64 (0.6.14-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.82 Setting up libllvm15:amd64 (1:15.0.6-4+b1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.83 Setting up libxslt1.1:amd64 (1.1.35-1+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.84 Setting up gpgconf (2.2.40-1.1+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.85 Setting up libpam-systemd:amd64 (252.39-1~deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.97 Setting up libdecor-0-0:amd64 (0.1.1-2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.98 Setting up libcurl4:amd64 (7.88.1-10+deb12u14) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 99.99 Setting up libx11-6:amd64 (2:1.8.4-2+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.0 Setting up libharfbuzz0b:amd64 (6.0.0+dfsg-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.0 Setting up libgdk-pixbuf-2.0-0:amd64 (2.42.10+dfsg-1+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.0 Setting up libmplex2-2.1-0:amd64 (1:2.1.0+debian-7) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up curl (7.88.1-10+deb12u14) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libfontconfig1:amd64 (2.14.1-4) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libsndfile1:amd64 (1.2.0-1+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libbluray2:amd64 (1:1.3.4-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up llvm-14-linker-tools (1:14.0.6-12) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libqt5test5:amd64 (5.15.8+dfsg-11+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libxcomposite1:amd64 (1:0.4.5-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.1 Setting up libsm6:amd64 (2:1.2.3-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up liblilv-0-0:amd64 (0.24.14-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up liborc-0.4-dev:amd64 (1:0.4.33-2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libopenmpt0:amd64 (0.6.9-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libinstpatch-1.0-2:amd64 (1.1.6-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libavahi-client3:amd64 (0.8-10+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libperl5.36:amd64 (5.36.0-7+deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libxmuu1:amd64 (2:1.1.3-3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up gpg (2.2.40-1.1+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.2 Setting up libgstreamer1.0-0:amd64 (1.22.0-2+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setcap worked! gst-ptp-helper is not suid!\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libaa1:amd64 (1.4p5-50) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up gnupg-utils (2.2.40-1.1+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up binutils-x86-64-linux-gnu (2.40-2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libdrm-amdgpu1:amd64 (2.4.114-1+b1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libssh-gcrypt-4:amd64 (0.10.6-0+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libtirpc3:amd64 (1.3.3+ds-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libxcb-dri3-0:amd64 (1.15-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.3 Setting up libinput10:amd64 (1.22.1-1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.4 Setting up libpaper1:amd64 (1.1.29) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 \r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 Creating config file /etc/papersize with new version\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 Setting up gtk-update-icon-cache (3.24.38-2~deb12u3) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 Setting up libx11-xcb1:amd64 (2:1.8.4-2+deb12u2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 Setting up gir1.2-gstreamer-1.0:amd64 (1.22.0-2+deb12u1) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.5 Setting up libibverbs1:amd64 (44.0-2) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839742875,
+            "message": "#9 100.6 Setting up fontconfig (2.14.1-4) ...\r\n",
+            "ingestionTime": 1769839742888
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 100.6 Regenerating fonts cache... done.\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 102.9 Setting up libgdcm-dev (3.0.21-1) ...\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 102.9 Setting up libdrm-nouveau2:amd64 (2.4.114-1+b1) ...\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 102.9 Setting up gir1.2-freedesktop:amd64 (1.74.0-3) ...\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 102.9 Setting up libxdamage1:amd64 (1:1.1.6-1) ...\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": "#9 103.0 Setting up gpg-agent (2.2.40-1.1+deb12u2) ...\r\n",
+            "ingestionTime": 1769839744901
+        },
+        {
+            "timestamp": 1769839744898,
+            "message": 

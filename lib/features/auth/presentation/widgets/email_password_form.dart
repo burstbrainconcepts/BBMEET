@@ -179,7 +179,9 @@ class _EmailPasswordFormState extends State<EmailPasswordForm> {
         _showError("Sign in failed. Please try again.");
       }
     } catch (e) {
-       debugPrint("EmailPasswordForm: Error failure $e");
+      debugPrint("EmailPasswordForm: Error failure $e");
+      // Surface auth errors (e.g., incorrect password) to the UI
+      _showError(e);
     }
   }
 
