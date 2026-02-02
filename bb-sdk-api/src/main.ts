@@ -33,9 +33,36 @@ async function bootstrap() {
   const configService = app.get(EnvironmentConfigService);
 
   // Enable CORS so the web frontend (bbmeet.site / www.bbmeet.site) can call the API.
-  // Using origin: true reflects the incoming Origin header, which is safest here.
   app.enableCors({
-    origin: true,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or Postman)
+      if (!origin) {
+        return callback(null, true);
+      }
+      // Allow requests from bbmeet.site domains
+      const allowedOrigins = [
+        'https://www.bbmeet.site',
+        'https://bbmeet.site',
+      ];
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      // For development, allow localhost
+      if (origin.startsWith('http://localhost:') || origin.startsWith('https://localhost:')) {
+        return callback(null, true);
+      }
+      // Reject other origins
+      return callback(new Error('Not allowed by CORS'));
+    },
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'api-key',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+    ],
     credentials: true,
   });
 
