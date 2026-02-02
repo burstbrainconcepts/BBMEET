@@ -39,7 +39,8 @@ void main(List<String> args) async {
         WaterbusSdk().initialize(
           config: SdkConfig(
             serverConfig: ServerConfig(
-              url: Endpoints.mediaUrl,  // Use media server for WebRTC signalling
+              // Use API server for auth & signalling; it coordinates with media backend
+              url: Endpoints.baseUrl,
               suffixUrl: Endpoints.suffixUrl,
               apiKey: 'bbmeet-general-api-key',
             ),
