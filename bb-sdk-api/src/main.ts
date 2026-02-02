@@ -17,6 +17,7 @@ import {
 import { EPackage, getProtoPath, getIncludeDirs } from 'waterbus-proto';
 import { EnvironmentConfigService } from './core/config/environment/environments';
 import { IoAdapter } from '@nestjs/platform-socket.io';
+import fastifyCors from '@fastify/cors';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -32,8 +33,9 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(EnvironmentConfigService);
 
-  // Enable CORS so the web frontend (bbmeet.site / www.bbmeet.site) can call the API.
-  app.enableCors({
+  // Enable CORS using Fastify's instance directly for proper preflight handling
+  const fastifyInstance = app.getHttpAdapter().getInstance();
+  await fastifyInstance.register(fastifyCors, {
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or Postman)
       if (!origin) {
@@ -52,9 +54,9 @@ async function bootstrap() {
         return callback(null, true);
       }
       // Reject other origins
-      return callback(new Error('Not allowed by CORS'));
+      return callback(new Error('Not allowed by CORS'), false);
     },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
       'Content-Type',
       'Authorization',
@@ -62,8 +64,11 @@ async function bootstrap() {
       'X-Requested-With',
       'Accept',
       'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers',
     ],
     credentials: true,
+    preflight: true,
   });
 
   app.enableShutdownHooks();
