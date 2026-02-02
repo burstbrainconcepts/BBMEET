@@ -34,28 +34,33 @@ async function bootstrap() {
   const configService = app.get(EnvironmentConfigService);
 
   // Enable CORS using Fastify's instance directly for proper preflight handling
+  // CORS origins can be configured via CORS_ORIGINS env var (comma-separated)
+  // If not set, allows all origins (for maximum compatibility)
   const fastifyInstance = app.getHttpAdapter().getInstance();
+  const corsOriginsEnv = process.env.CORS_ORIGINS || '';
+  const corsOrigins = corsOriginsEnv
+    ? corsOriginsEnv.split(',').map((o) => o.trim()).filter(Boolean)
+    : null; // null = allow all origins
+
   await fastifyInstance.register(fastifyCors, {
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or Postman)
-      if (!origin) {
-        return callback(null, true);
-      }
-      // Allow requests from bbmeet.site domains
-      const allowedOrigins = [
-        'https://www.bbmeet.site',
-        'https://bbmeet.site',
-      ];
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      // For development, allow localhost
-      if (origin.startsWith('http://localhost:') || origin.startsWith('https://localhost:')) {
-        return callback(null, true);
-      }
-      // Reject other origins
-      return callback(new Error('Not allowed by CORS'), false);
-    },
+    origin: corsOrigins
+      ? (origin, callback) => {
+          // Allow requests with no origin (like mobile apps or Postman)
+          if (!origin) {
+            return callback(null, true);
+          }
+          // Check if origin is in allowed list
+          if (corsOrigins.includes(origin)) {
+            return callback(null, true);
+          }
+          // For development, always allow localhost
+          if (origin.startsWith('http://localhost:') || origin.startsWith('https://localhost:')) {
+            return callback(null, true);
+          }
+          // Reject other origins
+          return callback(new Error('Not allowed by CORS'), false);
+        }
+      : true, // Allow all origins if CORS_ORIGINS not set
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
       'Content-Type',
@@ -69,6 +74,7 @@ async function bootstrap() {
     ],
     credentials: true,
     preflight: true,
+    preflightContinue: false,
   });
 
   app.enableShutdownHooks();

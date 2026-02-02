@@ -51,6 +51,10 @@
             ],
             "secrets": [
                 {
+                    "name": "CORS_ORIGINS",
+                    "valueFrom": "/bbmeet/production/api/CORS_ORIGINS"
+                },
+                {
                     "name": "DATABASE_TYPE",
                     "valueFrom": "/bbmeet/production/api/DATABASE_TYPE"
                 },
