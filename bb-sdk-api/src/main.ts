@@ -32,22 +32,10 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(EnvironmentConfigService);
 
-  // Enable CORS for web frontend (bbmeet.site / www.bbmeet.site)
-  // This allows the web app on CloudFront to call https://api.bbmeet.site
+  // Enable CORS so the web frontend (bbmeet.site / www.bbmeet.site) can call the API.
+  // Using origin: true reflects the incoming Origin header, which is safest here.
   app.enableCors({
-    origin: [
-      'https://www.bbmeet.site',
-      'https://bbmeet.site',
-    ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: [
-      'Content-Type',
-      'Authorization',
-      'api-key',
-      'X-Requested-With',
-      'Accept',
-      'Origin',
-    ],
+    origin: true,
     credentials: true,
   });
 
