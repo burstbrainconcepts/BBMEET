@@ -12,6 +12,13 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Docker Hub...
+      - |
+        if [ -z "$DOCKERHUB_USERNAME" ] || [ -z "$DOCKERHUB_PASSWORD" ]; then
+          echo "ERROR: Docker Hub credentials not found!"
+          echo "DOCKERHUB_USERNAME is set: $([ -n "$DOCKERHUB_USERNAME" ] && echo 'yes' || echo 'no')"
+          echo "DOCKERHUB_PASSWORD is set: $([ -n "$DOCKERHUB_PASSWORD" ] && echo 'yes' || echo 'no')"
+          exit 1
+        fi
       - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 153402911459.dkr.ecr.us-east-1.amazonaws.com
