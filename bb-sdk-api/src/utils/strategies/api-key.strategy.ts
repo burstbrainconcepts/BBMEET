@@ -12,6 +12,12 @@ export class ApiKeyGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest();
+    
+    // Allow OPTIONS requests (CORS preflight) to pass through without API key
+    if (req.method === 'OPTIONS') {
+      return true;
+    }
+    
     const key =
       req.headers['api-key'] ??
       req.headers['x-api-key'] ??
