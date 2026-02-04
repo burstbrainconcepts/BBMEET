@@ -14,7 +14,22 @@ abstract class UserLocalDataSource {
 
 @LazySingleton(as: UserLocalDataSource)
 class UserLocalDataSourceImpl implements UserLocalDataSource {
-  final Box hiveBox = Hive.box(StorageKeys.boxAuth);
+  Box? _hiveBox;
+
+  Box get hiveBox {
+    if (_hiveBox != null && Hive.isBoxOpen(StorageKeys.boxAuth)) {
+      return _hiveBox!;
+    }
+
+    if (!Hive.isBoxOpen(StorageKeys.boxAuth)) {
+      throw StateError(
+        'Box ${StorageKeys.boxAuth} is not open. Ensure BaseLocalData.initialBox() is called first.',
+      );
+    }
+
+    _hiveBox = Hive.box(StorageKeys.boxAuth);
+    return _hiveBox!;
+  }
 
   @override
   void clearUser() {
