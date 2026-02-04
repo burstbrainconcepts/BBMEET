@@ -42,6 +42,7 @@ async function bootstrap() {
     ? corsOriginsEnv.split(',').map((o) => o.trim()).filter(Boolean)
     : null; // null = allow all origins
 
+  // Register CORS plugin BEFORE any routes are registered
   await fastifyInstance.register(fastifyCors, {
     origin: corsOrigins
       ? (origin, callback) => {
@@ -75,6 +76,24 @@ async function bootstrap() {
     credentials: true,
     preflight: true,
     preflightContinue: false,
+    strictPreflight: false, // Don't fail on invalid preflight requests
+  });
+
+  // Also enable CORS via NestJS as a fallback (though Fastify plugin should handle it)
+  app.enableCors({
+    origin: corsOrigins ? corsOrigins : true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'api-key',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers',
+    ],
+    credentials: true,
   });
 
   app.enableShutdownHooks();
