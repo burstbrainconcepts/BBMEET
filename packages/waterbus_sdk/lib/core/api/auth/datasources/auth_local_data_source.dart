@@ -43,23 +43,29 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }) {
     try {
       final box = _getBox();
+      // Check if box is ready for transactions
+      if (!Hive.isBoxOpen(StorageKeys.boxAuth)) {
+        throw StateError('Box is not open');
+      }
       box.put(StorageKeys.accessToken, accessToken);
       box.put(StorageKeys.refreshToken, refreshToken);
     } catch (e) {
-      // If box is closing, wait a bit and retry once
-      if (e.toString().contains('closing') || e.toString().contains('InvalidStateError')) {
-        Future.delayed(const Duration(milliseconds: 200), () {
-          try {
-            final box = _getBox();
-            box.put(StorageKeys.accessToken, accessToken);
-            box.put(StorageKeys.refreshToken, refreshToken);
-          } catch (_) {
-            // Ignore retry errors - tokens will be saved on next successful auth
+      // If box is closing or not ready, schedule async retry
+      // This handles the race condition during migration
+      final tokens = {'accessToken': accessToken, 'refreshToken': refreshToken};
+      Future.delayed(const Duration(milliseconds: 300), () {
+        try {
+          if (Hive.isBoxOpen(StorageKeys.boxAuth)) {
+            final box = Hive.box(StorageKeys.boxAuth);
+            box.put(StorageKeys.accessToken, tokens['accessToken']);
+            box.put(StorageKeys.refreshToken, tokens['refreshToken']);
           }
-        });
-      } else {
-        rethrow;
-      }
+        } catch (_) {
+          // Ignore retry errors - tokens will be saved on next successful auth
+        }
+      });
+      // Don't throw - let the async retry handle it
+      // This prevents blocking the auth flow
     }
   }
 
