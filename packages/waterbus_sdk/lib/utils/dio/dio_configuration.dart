@@ -161,7 +161,7 @@ class DioConfiguration {
       final String accessToken = response.data['token'];
       final String refreshToken = response.data['refreshToken'];
 
-      _authLocal.saveTokens(
+      await _authLocal.saveTokens(
         accessToken: accessToken,
         refreshToken: refreshToken,
       );
@@ -175,6 +175,9 @@ class DioConfiguration {
   }
 
   void _logOut() {
-    _authLocal.deleteToken();
+    // Fire and forget - don't block on logout
+    _authLocal.deleteToken().catchError((_) {
+      // Ignore errors during logout
+    });
   }
 }

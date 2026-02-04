@@ -39,7 +39,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
         final String refreshToken = response.data['refreshToken'];
 
         print("AuthRemoteDataSource: Saving tokens");
-        _localDataSource.saveTokens(
+        await _localDataSource.saveTokens(
           accessToken: accessToken,
           refreshToken: refreshToken,
         );

@@ -36,7 +36,7 @@ class AuthRepositoryImpl extends AuthRepository {
       return Result.failure(ServerFailure());
     }
 
-    _localDataSource.saveTokens(
+    await _localDataSource.saveTokens(
       accessToken: accessToken,
       refreshToken: refreshToken,
     );
@@ -48,7 +48,7 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Result<bool>> deleteToken() async {
     final Result<bool> result = await _remoteDataSource.deleteToken();
 
-    _localDataSource.deleteToken();
+    await _localDataSource.deleteToken();
 
     return result;
   }

@@ -142,7 +142,10 @@ class BaseRemoteData {
       validateStatus: (status) {
         if (status == StatusCode.notAcceptable &&
             _authLocal.accessToken.isNotEmpty) {
-          _authLocal.deleteToken();
+          // Fire and forget - don't block in validateStatus callback
+          _authLocal.deleteToken().catchError((_) {
+            // Ignore errors
+          });
         }
 
         return true;
